@@ -33,38 +33,40 @@ const Login = () => {
 
 
 
-                <View style={estilos.login} >
-                    <View style={estilos.iEmail}>
-                    <View style={estilos.loginI}>
-                        <Text style={estilos.loginT}>E-mail</Text>
-                    </View>
-                    <View style={estilos.loginI}>
+             
+                <View style={estilos.inputContainer} >
+                    
+                    <View style={estilos.containerInput}>
+                        <Text style={estilos.textInput}>E-mail</Text>
+                                       
                     <TextInput
-                        style={estilos.TextInput}
+                        style={estilos.Input}
                         value={email}
                         onChangeText={setEmail}
                         placeholder={"Email"}
                         placeholderTextColor="#419ED7"
                     />
-                    </View>
-                    </View>
+                   </View> 
+                    
 
-                    <View style={estilos.iSenha}> 
-                    <View style={estilos.loginI}>
-                    <Text style={estilos.loginT}>Senha</Text>
-                    </View>
-                    <View style={estilos.loginI}>
+                    
+                    <View style={estilos.containerInput}>
+                    <Text style={estilos.textInput}>Senha</Text>
+                    
                     <TextInput
-                        style={estilos.TextInput}
+                        style={estilos.Input}
                         value={senha}
                         secureTextEntry={true}
                         onChangeText={setSenha}
                         placeholder={"senha"}
                         placeholderTextColor="#419ED7"
                     />
-                    </View>
-                    </View>
+                   </View>
+                    
                 </View>
+
+
+
 
 
 
