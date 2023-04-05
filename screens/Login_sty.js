@@ -18,33 +18,37 @@ const estilos = StyleSheet.create({
   },
   
   
-  login: {
-    marginVertical: 10,
+  textInput:{
+  fontsize: 18,
+  },
+  inputContainer: {
     flex:3,
+    justifyContent: 'flex-end',
+    },
+  containerInput:{
+    flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 15,
-    },
-  loginT:{
-    color: 'white',
-    fontSize: 14,
-    fontFamily: 'AveriaLibre-Bold',
-    marginRight: 10
+    width: '100%',
+    marginBottom: 14,
+   
   },
-  loginI:{
-      flexDirection: 'row',
-      alignItems: 'center',
-      marginBottom: 10
-    },
-  TextInput: {
+  Input: {
     
-    flex: 1,
-    borderWidth: 1,
+    width: 264,
+    heigth: 38,
     borderColor: 'gray',
-    padding: 10,
-    backgroundColor: 'white',
+    fontSize: 14,
+    color: '#419ED7',
+    borderColor: 'white',
+    borderWidth: 1,
+    borderRadius: 4,
+    marginTop: 5,
     fontFamily: 'AveriaLibre-Bold',
-    color: '#419ED7'
+    
   },
+
+
 
 
 
