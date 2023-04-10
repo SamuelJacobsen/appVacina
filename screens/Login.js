@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TextInput, View, TouchableOpacity, Image, ImageBackground } from "react-native"
 import { useState } from "react"
 import { estilos } from "./Login_sty"
-import { LinearGradient } from 'expo-linear-gradient'
+import LinearGradient from 'react-native-linear-gradient';
 
 const Login = () => {
 
@@ -11,10 +11,11 @@ const Login = () => {
 
     return (
         <View style={estilos.main}>
-            <ImageBackground source={require('../assets/images/bg.jpg')} style={estilos.bg}>
+            <ImageBackground source={require('../assets/images/bg.jpg')} style={estilos.bg}blurRadius={2}>
             <LinearGradient
-            colors={['#54837','#FFFFFF','#DDE6E5', '#3B5E5A' ]}
+            colors={['rgba(84, 131, 122, 0.55)','rgba(255, 255, 255, 0.9)','rgba(255, 255, 255, 0.9)', 'rgba(255, 255, 255, 0.7)', 'rgba(221, 230, 229, 0.7)', 'rgba(59, 94, 90, 0.7)']} style={estilos.bgG}
             />
+
 
 
 
@@ -32,38 +33,35 @@ const Login = () => {
 
 
 
+                <View style={estilos.inputContainer} >
 
-                <View style={estilos.login} >
-                    <View style={estilos.iEmail}>
-                    <View style={estilos.loginI}>
-                        <Text style={estilos.loginT}>E-mail</Text>
-                    </View>
-                    <View style={estilos.loginI}>
-                    <TextInput
-                        style={estilos.TextInput}
-                        value={email}
-                        onChangeText={setEmail}
-                        placeholder={"Email"}
-                        placeholderTextColor="#419ED7"
-                    />
-                    </View>
+                    <View style={estilos.containerInput}>
+                        <Text style={estilos.textInput}>E-mail </Text>
+
+                        <TextInput
+                            style={estilos.Input}
+                            value={email}
+                            onChangeText={setEmail}
+                            placeholder={"E-mail"}
+                            placeholderTextColor="#419ED7"
+                        />
                     </View>
 
-                    <View style={estilos.iSenha}> 
-                    <View style={estilos.loginI}>
-                    <Text style={estilos.loginT}>Senha</Text>
+
+
+                    <View style={estilos.containerInput}>
+                        <Text style={estilos.textInput}>Senha </Text>
+
+                        <TextInput
+                            style={estilos.Input}
+                            value={senha}
+                            secureTextEntry={true}
+                            onChangeText={setSenha}
+                            placeholder={"senha"}
+                            placeholderTextColor="#419ED7"
+                        />
                     </View>
-                    <View style={estilos.loginI}>
-                    <TextInput
-                        style={estilos.TextInput}
-                        value={senha}
-                        secureTextEntry={true}
-                        onChangeText={setSenha}
-                        placeholder={"senha"}
-                        placeholderTextColor="#419ED7"
-                    />
-                    </View>
-                    </View>
+
                 </View>
 
 
@@ -81,9 +79,9 @@ const Login = () => {
                     </TouchableOpacity>
                 </View>
 
-               
+
             </ImageBackground>
-            
+
         </View>
     )
 }

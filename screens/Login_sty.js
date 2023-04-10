@@ -13,41 +13,87 @@ const estilos = StyleSheet.create({
     flex: 1,
     resizeMode: 'cover'
   },
-  linear:{
-    flex: 1,
+ bgG: {
+    position: 'absolute',
+    height: '100%',
+    width: '100%',
   },
-  
-  
-  login: {
-    marginVertical: 10,
-    flex:3,
+
+
+  title: {
+    text: {
+
+      color: '#419ED7',
+      fontSize: 40,
+      fontFamily: 'AveriaLibre-Bold',
+      textDecorationLine: 'underline',
+
+
+    },
+    flex: 2,
+    flexDirection: 'row',
     justifyContent: 'center',
-    paddingHorizontal: 15,
-    },
-  loginT:{
-    color: 'white',
-    fontSize: 14,
-    fontFamily: 'AveriaLibre-Bold',
-    marginRight: 10
+    alignItems: 'center',
+    paddingHorizontal: 10
   },
-  loginI:{
-      flexDirection: 'row',
-      alignItems: 'center',
-      marginBottom: 10
+  home: {
+    text: {
+      color: '#419ED7',
+      fontSize: 30,
+      fontFamily: 'AveriaLibre-Bold',
+      textAlign: 'center'
     },
-  TextInput: {
-    
     flex: 1,
-    borderWidth: 1,
-    borderColor: 'gray',
-    padding: 10,
-    backgroundColor: 'white',
-    fontFamily: 'AveriaLibre-Bold',
-    color: '#419ED7'
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 10
   },
 
 
 
+
+
+  textInput: {
+    color: 'white',
+    fontSize: 16,
+    fontFamily: 'AveriaLibre-Bold'
+  },
+  inputContainer: {
+    flex: 3,
+    justifyContent: 'flex-end',
+  },
+  containerInput: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    marginBottom: 14,
+
+  },
+  Input: {
+
+    width: 300,
+    height: 38,
+    fontSize: 14,
+    color: '#419ED7',
+    borderColor: 'white',
+    borderWidth: 1,
+    marginTop: 3,
+    fontFamily: 'AveriaLibre-Bold',
+    backgroundColor: 'white',
+
+  },
+
+
+
+  click: {
+    flex: 4,
+    justifyContent: 'space-around',
+    alignItems: 'center',
+
+
+  },
 
   button: {
     text: {
@@ -92,45 +138,10 @@ const estilos = StyleSheet.create({
     padding: 2,
     paddingHorizontal: 15,
   },
-  title: {
-    text: {
-
-      color: '#419ED7',
-      fontSize: 40,
-      fontFamily: 'AveriaLibre-Bold',
-      textDecorationLine: 'underline',
 
 
-    },
-    flex: 2,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 10
-  },
-  home: {
-    text: {
-      color: '#419ED7',
-      fontSize: 30,
-      fontFamily: 'AveriaLibre-Bold',
-      textAlign: 'center'
-    },
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 10
-  },
 
-  
 
-  click: {
-    flex: 4,
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    
-
-  }
 
 })
 
