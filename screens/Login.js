@@ -3,10 +3,14 @@ import { useState } from "react"
 import { estilos } from "./Login_sty"
 import LinearGradient from 'react-native-linear-gradient';
 
+
 const Login = () => {
+
 
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
+
+
 
 
     return (
@@ -19,12 +23,17 @@ const Login = () => {
 
 
 
+
+
+
+
                 <View style={estilos.title}>
                     <Image style={estilos.logo}
                         source={require('../assets/images/logo.png')}
                     />
                     <Text style={estilos.title.text}>MyHealth</Text>
                 </View>
+
 
                 <View style={estilos.home}>
                     <Text style={estilos.home.text}>Controle as suas vacinas   e fique seguro</Text>
@@ -33,10 +42,16 @@ const Login = () => {
 
 
 
+
+
+
+
                 <View style={estilos.inputContainer} >
+
 
                     <View style={estilos.containerInput}>
                         <Text style={estilos.textInput}>E-mail </Text>
+
 
                         <TextInput
                             style={estilos.Input}
@@ -49,8 +64,12 @@ const Login = () => {
 
 
 
+
+
+
                     <View style={estilos.containerInput}>
                         <Text style={estilos.textInput}>Senha </Text>
+
 
                         <TextInput
                             style={estilos.Input}
@@ -62,7 +81,12 @@ const Login = () => {
                         />
                     </View>
 
+
                 </View>
+
+
+
+
 
 
 
@@ -80,11 +104,17 @@ const Login = () => {
                 </View>
 
 
+
+
             </ImageBackground>
+
 
         </View>
     )
 }
+
+
+
 
 
 

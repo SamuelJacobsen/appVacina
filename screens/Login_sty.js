@@ -18,72 +18,37 @@ const estilos = StyleSheet.create({
     height: '100%',
     width: '100%',
   },
-
-
-  title: {
-    text: {
-
-      color: '#419ED7',
-      fontSize: 40,
-      fontFamily: 'AveriaLibre-Bold',
-      textDecorationLine: 'underline',
-
-
-    },
-    flex: 2,
-    flexDirection: 'row',
+  
+  
+  login: {
+    marginVertical: 10,
+    flex:3,
     justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 10
-  },
-  home: {
-    text: {
-      color: '#419ED7',
-      fontSize: 30,
-      fontFamily: 'AveriaLibre-Bold',
-      textAlign: 'center'
+    paddingHorizontal: 15,
     },
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 10
-  },
-
-
-
-
-
-  textInput: {
+  loginT:{
     color: 'white',
-    fontSize: 16,
-    fontFamily: 'AveriaLibre-Bold'
-  },
-  inputContainer: {
-    flex: 3,
-    justifyContent: 'flex-end',
-  },
-  containerInput: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    marginBottom: 14,
-
-  },
-  Input: {
-
-    width: 300,
-    height: 38,
     fontSize: 14,
-    color: '#419ED7',
-    borderColor: 'white',
-    borderWidth: 1,
-    marginTop: 3,
     fontFamily: 'AveriaLibre-Bold',
-    backgroundColor: 'white',
-
+    marginRight: 10
   },
+  loginI:{
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginBottom: 10
+    },
+  TextInput: {
+    
+    flex: 1,
+    borderWidth: 1,
+    borderColor: 'gray',
+    padding: 10,
+    backgroundColor: 'white',
+    fontFamily: 'AveriaLibre-Bold',
+    color: '#419ED7'
+  },
+
+
 
 
 
