@@ -4,12 +4,20 @@ import { estilos } from "./Login_sty"
 import LinearGradient from 'react-native-linear-gradient';
 
 
-const Login = () => {
+const Login = (props) => {
 
 
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
-
+    const goToEntrar = () => {
+        props.navigation.navigate('Entrar')
+    }
+    const goToCriar = () => {
+        props.navigation.navigate('Criar')
+    }
+    const goToEsqueci = () => {
+        props.navigation.navigate('Esqueci')
+    }
 
 
 
@@ -17,7 +25,7 @@ const Login = () => {
         <View style={estilos.main}>
             <ImageBackground source={require('../assets/images/bg.jpg')} style={estilos.bg}blurRadius={2}>
             <LinearGradient
-            colors={['rgba(84, 131, 122, 0.55)','rgba(255, 255, 255, 0.9)','rgba(255, 255, 255, 0.9)', 'rgba(255, 255, 255, 0.7)', 'rgba(221, 230, 229, 0.7)', 'rgba(59, 94, 90, 0.7)']} style={estilos.bgG}
+            colors={['rgba(84, 131, 122, 0.55)', 'rgba(255, 255, 255, 0.7)', 'rgba(221, 230, 229, 0.7)', 'rgba(59, 94, 90, 0.7)']} style={estilos.bgG}
             />
 
 
@@ -92,13 +100,13 @@ const Login = () => {
 
 
                 <View style={estilos.click}>
-                    <TouchableOpacity style={estilos.button}>
+                    <TouchableOpacity onPress={goToEntrar} style={estilos.button}>
                         <Text style={estilos.button.text}>Entrar</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={estilos.buttonS}>
+                    <TouchableOpacity onPress={goToCriar} style={estilos.buttonS}>
                         <Text style={estilos.buttonS.text}>Criar minha conta</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={estilos.buttonF}>
+                    <TouchableOpacity onPress={goToEsqueci} style={estilos.buttonF}>
                         <Text style={estilos.buttonF.text}>Esqueci minha senha</Text>
                     </TouchableOpacity>
                 </View>
