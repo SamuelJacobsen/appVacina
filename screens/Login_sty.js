@@ -69,7 +69,9 @@ const estilos = StyleSheet.create({
   textInput: {
     color: 'white',
     fontSize: 16,
-    fontFamily: 'AveriaLibre-Bold'
+    fontFamily: 'AveriaLibre-Bold',
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 1,
   },
   inputContainer: {
     flex: 3,
@@ -81,6 +83,7 @@ const estilos = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     marginBottom: 14,
+    
 
 
   },
@@ -99,8 +102,21 @@ const estilos = StyleSheet.create({
 
 
   },
-
-
+  errorText: {
+    color: "red",
+    fontSize: 14,
+     marginTop: -25,
+    alignSelf: 'flex-start',
+  },
+  errorContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '80%',
+    marginBottom: 14,
+    marginTop: 10,
+    
+  },
 
 
 
@@ -130,9 +146,16 @@ const estilos = StyleSheet.create({
     marginVertical: 3,
     padding: 5,
     paddingHorizontal: 35,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
 
 
   },
+
+
   buttonS: {
     text: {
       color: 'white',
@@ -145,7 +168,11 @@ const estilos = StyleSheet.create({
     marginVertical: 3,
     padding: 5,
     paddingHorizontal: 15,
-
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
 
   },
   buttonF: {
@@ -162,6 +189,11 @@ const estilos = StyleSheet.create({
     marginVertical: 3,
     padding: 2,
     paddingHorizontal: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
 
 

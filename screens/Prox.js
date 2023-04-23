@@ -1,6 +1,6 @@
 import {View, Text, TouchableOpacity } from 'react-native';
 
-const Entrar = (props) => {
+const Prox = (props) => {
 
     return (
         <View>
@@ -9,4 +9,4 @@ const Entrar = (props) => {
     )
 }
 
-export default Entrar;
+export default Prox;
