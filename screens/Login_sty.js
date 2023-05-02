@@ -15,7 +15,7 @@ const estilos = StyleSheet.create({
     flex: 1,
     resizeMode: 'cover'
   },
- bgG: {
+  bgG: {
     position: 'absolute',
     height: '100%',
     width: '100%',
@@ -83,7 +83,7 @@ const estilos = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     marginBottom: 14,
-    
+
 
 
   },
@@ -102,21 +102,7 @@ const estilos = StyleSheet.create({
 
 
   },
-  errorText: {
-    color: "red",
-    fontSize: 14,
-     marginTop: -25,
-    alignSelf: 'flex-start',
-  },
-  errorContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '80%',
-    marginBottom: 14,
-    marginTop: 10,
-    
-  },
+
 
 
 

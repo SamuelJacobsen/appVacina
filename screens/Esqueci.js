@@ -3,7 +3,7 @@ import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-nativ
 import { useNavigation } from '@react-navigation/native';
 import { RadioButton } from 'react-native-paper';
 
-const Esqueci = () => {
+const Esqueci = (props) => {
 
     const [email, setEmail] = useState('');
 
@@ -56,7 +56,6 @@ const styles = StyleSheet.create({
         color: '#419ED7',
         borderColor: 'white',
         borderWidth: 1,
-        marginTop: 3,
         fontFamily: 'AveriaLibre-Bold',
         backgroundColor: 'white',
         paddingBottom: 5,
