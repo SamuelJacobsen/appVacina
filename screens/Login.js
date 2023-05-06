@@ -12,13 +12,12 @@ const Login = (props) => {
 
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
-    const navigation = useNavigation();
     const [showInvalidMsg, setShowInvalidMsg] = useState(false);
 
     const handleLogin = () => {
         if (!validator.isEmail(email) || senha.length < 8) {
           setShowInvalidMsg(true);
-          props.navigation.push('Home');
+          props.navigation.navigate('HomeNavigator', { screen: 'Minhas Vacinas' });
         } else {
           // Lógica de autenticação do usuário
           setShowInvalidMsg(false);
@@ -26,10 +25,10 @@ const Login = (props) => {
         }
       };
     const goToCriar = () => {
-        props.navigation.push('Nova Conta')
+        props.navigation.push('Criar Conta')
     }
     const goToEsqueci = () => {
-        navigation.navigate('Esqueci')
+        props.navigation.push('Recuperar Senha')
     }
 
 

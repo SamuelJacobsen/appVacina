@@ -1,198 +1,142 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, View, TouchableOpacity, Image } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState } from 'react'
+import { Searchbar } from 'react-native-paper';
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import CardVacina from '../components/CardVacina';
 
 const Home = (props) => {
-    const navigation = useNavigation();
 
-    const Nova = () => {
-        navigation.navigate('Nova vacina')
-    };
-    const goToEditar = () => {
-        props.navigation.push('Editar vacina')
+    const [vacinas, setVacinas] = useState([])
+
+    const listaVacinas = [
+        {
+            id: 1,
+            nome: 'BCG',
+            data: '11/06/2022',
+            dose: 'Dose única',
+            comprovante: '',
+            proxima: ''
+        },
+        {
+            id: 2,
+            nome: 'Febre Amarela',
+            data: '05/10/2022',
+            dose: '1a. dose',
+            comprovante: '',
+            proxima: '11/10/2023'
+        },
+        {
+            id: 3,
+            nome: 'Febre Amarela',
+            data: '05/10/2022',
+            dose: '1a. dose',
+            comprovante: '',
+            proxima: '11/10/2023'
+        },
+        {
+            id: 4,
+            nome: 'Febre Amarela',
+            data: '05/10/2022',
+            dose: '1a. dose',
+            comprovante: '',
+            proxima: '11/10/2023'
+        },
+    ]
+
+    if (vacinas.length == 0) {
+        setVacinas(listaVacinas)
     }
+
+    if (typeof props.route.params !== 'undefined') {
+        if (typeof props.route.params.itemAdicionar !== 'undefined') {
+            console.log(props.route.params.itemAdicionar);
+            vacinas.push({
+                id: props.route.params.itemAdicionar.id,
+                nome: props.route.params.itemAdicionar.nome,
+                data: props.route.params.itemAdicionar.data,
+                dose: props.route.params.itemAdicionar.dose,
+                proxima: props.route.params.itemAdicionar.proxima,
+            })
+        }
+        if (typeof props.route.params.itemEditar !== 'undefined') {
+            var index = vacinas.findIndex((item) => item.id == props.route.params.itemEditar.id)
+            if (index !== -1) {
+                let arrayTemporario = vacinas.slice();
+                arrayTemporario[index] = props.route.params.itemEditar;
+                setVacinas(arrayTemporario);
+                props.route.params.itemEditar = 'undefined';
+            }
+        }
+        if (typeof props.route.params.idApagar !== 'undefined') {
+            var index = vacinas.findIndex((item) => item.id == props.route.params.idApagar)
+            if (index !== -1) {
+                vacinas.splice(index, 1);
+            }
+        }
+    }
+
+    const showNovaVacina = () => {
+        props.navigation.navigate('HomeNavigator', { screen: 'Nova Vacina' });
+    }
+
+    const [searchQuery, setSearchQuery] = useState('');
+
+    const onChangeSearch = query => setSearchQuery(query);
+
+    const styles = StyleSheet.create({
+        main: {
+            backgroundColor: '#add4d1',
+            flex: 1
+        },
+        title: {
+            textAlign: 'center',
+            fontSize: 40,
+            marginTop: 30,
+            color: '#429ed7',
+            fontWeight: 'bold',
+            textDecorationLine: 'underline'
+        },
+        btnNovaVacina: {
+            backgroundColor: 'green',
+            textAlign: 'center',
+            paddingVertical: 10,
+            width: 180,
+            color: 'white',
+            marginTop: 20,
+            marginBottom: 20,
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            fontSize: 20,
+        },
+        srcBar: {
+            width: '95%',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            marginTop: 20,
+            marginBottom: 20,
+        }
+    });
+
     return (
         <View style={styles.main}>
+            <Searchbar
+                icon={require('../assets/images/pes.png')}
+                style={styles.srcBar}
+                placeholder="Pesquisar Vacina..."
+                onChangeText={onChangeSearch}
+                value={searchQuery}
+            />
 
-            <View style={styles.aContainer}>
-                <View style={styles.pContainer}>
-                    <View >
-                        <Image source={require('../assets/images/pes.png')} style={styles.vaccineIcon} />
-                    </View>
-                    <TextInput
-                        style={styles.searchInput}
-                        placeholder="PESQUISAR VACINA..."
-                        placeholderTextColor="#8B8B8B"
-                        clearButtonMode="while-editing"
-                        returnKeyType="search"
-                        onSubmitEditing={() => console.log('Pesquisa iniciada')}
-                    />
-                </View>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+                <FlatList data={vacinas} renderItem={({ item }) => <CardVacina item={item} navigation={props.navigation} />} keyExtractor={item => item.id} numColumns={2} />
             </View>
 
-            <View style={styles.aCard}>
-                <TouchableOpacity onPress={goToEditar} style={styles.card}>
-                    <Text style={styles.title}>BCG</Text>
-                    <View style={styles.cardContainer}>
-                        <Text style={styles.cardContainer.text}>Dose única</Text>
-                    </View>
-                    <Text>11/06/2022</Text>
-                    <View style={styles.imgCard}>
-                        <Image source={require('../assets/images/vac.jpg')} style={styles.imgVac} />
-                    </View>
-                    <Text style={{ width: '90%', textAlign: 'right', color: '#ff0000', fontSize: 9 }}>Não há próxima dose</Text>
-
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={goToEditar} style={styles.card}>
-                    <Text style={styles.title}>Febre amarela</Text>
-                    <View style={styles.cardContainer}>
-                        <Text style={styles.cardContainer.text}>1a. dose</Text>
-                    </View>
-                    <Text>11/10/2022</Text>
-                    <View style={styles.imgCard}>
-                        <Image source={require('../assets/images/vac.jpg')} style={styles.imgVac} />
-                    </View>
-                    <Text style={{ width: '90%', textAlign: 'right', color: '#ff0000', fontSize: 9 }}>Próxima dose em: 11/10/2023</Text>
-
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={goToEditar} style={styles.card}>
-                    <Text style={styles.title}>Hepatite B</Text>
-                    <View style={styles.cardContainer}>
-                        <Text style={styles.cardContainer.text}>1a. dose</Text>
-                    </View>
-                    <Text>11/08/2022</Text>
-                    <View style={styles.imgCard}>
-                        <Image source={require('../assets/images/vac.jpg')} style={styles.imgVac} />
-                    </View>
-                    <Text style={{ width: '90%', textAlign: 'right', color: '#ff0000', fontSize: 9 }}>Próxima dose em: 11/10/2022</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={goToEditar} style={styles.card}>
-                    <Text style={styles.title}>Poliomelite</Text>
-                    <View style={styles.cardContainer}>
-                        <Text style={styles.cardContainer.text}>1a. dose</Text>
-                    </View>
-                    <Text>11/08/2022</Text>
-                    <View style={styles.imgCard}>
-                        <Image source={require('../assets/images/vac.jpg')} style={styles.imgVac} />
-                    </View>
-                    <Text style={{ width: '90%', textAlign: 'right', color: '#ff0000', fontSize: 9 }}>Próxima dose em: 11/10/2022</Text>
-                </TouchableOpacity>
-                
-
-            </View>
-
-            <View style={styles.click}>
-                <TouchableOpacity style={[styles.button, { backgroundColor: '#37BD6D' }]} onPress={Nova}>
-                    <Text style={styles.buttonText}>Nova vacina</Text>
-                </TouchableOpacity>
-            </View>
+            <TouchableOpacity onPress={showNovaVacina}>
+                <Text style={[styles.btnNovaVacina, styles.shadow]}>
+                    Nova Vacina
+                </Text>
+            </TouchableOpacity>
         </View>
     );
-};
+}
 
-
-const styles = StyleSheet.create({
-    main: {
-        flex: 1,
-        alignItems: 'center',
-        backgroundColor: '#ADD4D0',
-    },
-    aContainer: {
-        paddingBottom: 20,
-        paddingTop: 20,
-        width: '100%',
-        alignItems: 'center',
-    },
-    pContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: '#f0f0f0',
-        height: 25,
-        width: '90%',
-        paddingHorizontal: 10,
-
-    },
-
-    searchInput: {
-        padding: 3,
-        marginLeft: 5,
-        fontSize: 14,
-        fontFamily: 'AveriaLibre-Bold',
-        paddingLeft: 1,
-    },
-    vaccineIcon: {
-        width: 18,
-        height: 18,
-        tintColor: 'grey',
-    },
-
-    aCard: {
-        flex: 7,
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        width: '100%',
-        alignItems: 'center',
-        paddingHorizontal: 10,
-    },
-    card: {
-        width: '45%',
-        margin: 5,
-        alignItems: 'center',
-        backgroundColor: '#f0f0f0',
-        borderRadius: 10,
-        padding: 5,
-    },
-
-    imgVac: {
-        resizeMode: 'cover',
-        width: 150,
-        height: 80,
-    },
-    cardContainer: {
-        text: {
-            color: 'white',
-            fontSize: 12,
-            fontFamily: 'AveriaLibre-Bold'
-        },
-        height: 15,
-        width: 80,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        backgroundColor: '#419ED7',
-        alignItems: 'center',
-    },
-    title: {
-        fontSize: 20,
-        color: '#3F92C5',
-        fontFamily: 'AveriaLibre-Bold',
-    },
-
-    click: {
-        flex: 2,
-        justifyContent: 'space-around',
-        alignItems: 'center',
-  
-    },
-    button: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        marginVertical: 3,
-        padding: 7,
-        paddingHorizontal: 20,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
-    },
-    buttonText: {
-        color: '#FFFFFF',
-        fontSize: 16,
-        fontFamily: 'AveriaLibre-Bold',
-    }
-});
-export default Home;
+export default Home

@@ -20,7 +20,7 @@ const Criar = () => {
             return;
         }
 
-        navigation.goBack();
+        navigation.navigate('Inicial')
     };
 
     return (

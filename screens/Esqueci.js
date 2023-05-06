@@ -10,7 +10,7 @@ const Esqueci = (props) => {
     const navigation = useNavigation();
 
     const Recuperar = () => {
-      navigation.navigate('Login')
+      navigation.navigate('Inicial')
     };
 
     return (

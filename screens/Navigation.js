@@ -1,135 +1,146 @@
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { createDrawerNavigator } from '@react-navigation/drawer'
+import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Image, StyleSheet, Text, View, } from 'react-native';
-import { CustomDrawer } from '../components/CustomDrawer';
-import { DrawerActions, useNavigation } from '@react-navigation/native';
-import Login from './Login';
-import Editar from './Editar';
-import Home from './Home';
 import Criar from './Criar';
+import Home from './Home';
+import Login from './Login';
 import Esqueci from './Esqueci';
+import { CustomDrawer } from '../components/CustomDrawer';
 import Nova from './Nova';
+import { Image } from 'react-native';
+import Editar from './Editar';
 import Prox from './Prox';
-
-
-
-const HomeDrawer = () => {
-  const Drawer = createDrawerNavigator();
-
-
+const EsqueciH = () => {
+  return(
+      <View style={estilos.vtitle} >
+          <Image
+          style={estilos.tinyLogo}
+          source={require('../assets/images/logo.png')}
+        />
+          <Text style={estilos.ttitle}>MyHealth</Text>
+      </View>
+  );
+}
+const HomeNavigator = () => {
+  const Drawer = createDrawerNavigator()
   return (
     <Drawer.Navigator drawerContent={(props) => <CustomDrawer {...props} />}>
 
-      <Drawer.Screen
+    
+<Drawer.Screen
         name="Minhas Vacinas"
         component={Home}
         options={{
-          drawerIcon: () => <Image source={require('../assets/images/logo.png')} style={{ height: 30, width: 30 }} />,
+          drawerIcon: () => <Image source={require('../assets/images/logo.png')} style={{ height: '120%', width: '15%' }} />,
           headerStyle: { backgroundColor: '#c0e7e2' },
+          drawerActiveTintColor: "#429ed7",
+          drawerInactiveTintColor: "#429ed7",
           headerTintColor: '#add4d1',
-          headerTitleStyle: { fontWeight: 'AveriaLibre-Bold', fontSize: 30, color: '#429ed5' },
+          headerTitleStyle: { fontWeight: 'bold', fontSize: 30, color: '#429ed5' },
         }} />
 
+      <Drawer.Screen name="Próximas Vacinas" component={Prox} options={{
+        drawerIcon: () => <Image source={require('../assets/images/calv.png')} style={{ height: '120%', width: '15%' }} />,
+        headerStyle: { backgroundColor: '#c0e7e2' },
+        drawerActiveTintColor: "#429ed7",
+          drawerInactiveTintColor: "#429ed7",
+        headerTintColor: '#add4d1',
+        headerTitleStyle: { fontWeight: 'bold', fontSize: 30, color: '#429ed5' },
+      }} />
 
-      <Drawer.Screen
-        name="Proximas vacinas"
-        component={Prox}
+      <Drawer.Screen name="Sair" component={Login}
         options={{
-          drawerIcon: () => <Image source={require('../assets/images/cal.png')} style={{ height: 30, width: 30 }} />,
+          drawerIcon: () => <Image source={require('../assets/images/sair.png')} style={{ height: '120%', width: '15%' }} />,
           headerStyle: { backgroundColor: '#c0e7e2' },
           headerTintColor: '#add4d1',
-          headerTitleStyle: { fontFamily: 'AveriaLibre-Bold', fontSize: 30, color: '#429ed5' },
-          
+          headerTitleStyle: { fontWeight: 'bold', fontSize: 30, color: '#429ed5' },
+          headerShown: false
         }} />
 
+      <Drawer.Screen name="Nova Vacina" component={Nova} options={{
+        title: "Minhas Vacinas",
+        drawerItemStyle: { height: 0 },
+        headerStyle: { backgroundColor: '#c0e7e2' },
+        headerTintColor: '#add4d1',
+        headerTitleStyle: { fontWeight: 'bold', fontSize: 30, color: '#429ed5' },
+      }} />
 
-      <Drawer.Screen
-            
-
-        name="Sair"
-        component={Login}
-        options={{
-
-          drawerIcon: () => <Image source={require('../assets/images/sair.png')} style={{ height: 30, width: 30 }} />,
-          headerStyle: { backgroundColor: '#c0e7e2' },
-          headerTintColor: '#add4d1',
-          headerTitleStyle: { fontFamily: 'AveriaLibre-Bold', fontSize: 30, color: '#419ED7' },
-          
-          headerShown: false,
-          
-        }}
-      />
-
+      <Drawer.Screen name="Editar Vacina" component={Editar} options={{
+        title: "Minhas Vacinas",
+        drawerItemStyle: { height: 0 },
+        headerStyle: { backgroundColor: '#c0e7e2' },
+        headerTintColor: '#add4d1',
+        headerTitleStyle: { fontWeight: 'bold', fontSize: 30, color: '#429ed5' },
+      }} />
 
     </Drawer.Navigator>
-  );
-};
-
-const Stack = createStackNavigator();
+  )
+}
 
 const Navigation = () => {
+
+  const Stack = createNativeStackNavigator()
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
+
         <Stack.Screen
-          name="Login"
+          name="Inicial"
           component={Login}
           options={
             {
-              headerShown: false,
-            }}
-        />
-        <Stack.Screen
-          name="Home"
-          component={HomeDrawer}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen name="Nova Conta" component={Criar}
-          options={
-            {
-
-              headerStyle: { backgroundColor: '#C1E7E3' },
-              headerTintColor: '#ADD4D0',
-              headerTitleStyle: { fontFamily: 'AveriaLibre-Bold', fontSize: 30, color: '#429ed5' },
-
-            }
-          }
-        />
-        <Stack.Screen name="Esqueci" component={Esqueci}
-          options={
-            {
-              headerStyle: { backgroundColor: '#C1E7E3' },
-              headerLeft: null,
-              headerTitle: () => <LogoTitle />,
+              title: 'Tela Inicial',
+              headerStyle: { backgroundColor: '#c0e7e2' },
               headerTintColor: 'white',
-              headerTitleStyle: { fontFamily: 'AveriaLibre-Bold', fontSize: 30, color: '#429ed5' },
-            }
-          }
-        />
-        <Stack.Screen name="Editar vacina" component={Editar}
+              headerTitleStyle: { fontWeight: 'bold', fontSize: 30, color: '#429ed5' },
+              headerShown: false
+            }} />
+
+        <Stack.Screen name="HomeNavigator" component={HomeNavigator} options={{ headerShown: false }} />
+
+        <Stack.Screen name="Criar Conta" component={Criar}
           options={
             {
-              headerStyle: { backgroundColor: '#C1E7E3' },
-              headerTintColor: '#ADD4D0',
-              headerTitleStyle: { fontFamily: 'AveriaLibre-Bold', fontSize: 30, color: '#429ed5' },
-            }
-          }
-        />
-        <Stack.Screen name="Nova vacina" component={Nova}
+              title: 'MyHealth',
+              headerStyle: { backgroundColor: '#c0e7e2' },
+              headerTintColor: 'white',
+              headerTitleStyle: { fontWeight: 'bold', fontSize: 30, color: '#429ed5' },
+            }} />
+
+        <Stack.Screen name="Recuperar Senha" component={Esqueci}
           options={
             {
-              headerStyle: { backgroundColor: '#C1E7E3' },
-              headerTintColor: '#ADD4D0',
-              headerTitleStyle: { fontFamily: 'AveriaLibre-Bold', fontSize: 30, color: '#429ed5' },
-            }
-          }
-        />
+              title: 'MyHealth',
+              headerStyle: { backgroundColor: '#c0e7e2' },
+              headerTintColor: 'white',
+             
+              headerTitleStyle: { fontWeight: 'bold', fontSize: 30, color: '#429ed5' },
+           
+            }} />
+
+        {/* <Stack.Screen name="Nova Vacina" component={NovaVacina} /> */}
+
       </Stack.Navigator>
     </NavigationContainer>
   );
+
 };
 
-export default Navigation; 
+const estilos = StyleSheet.create({
+  vtitle:{
+      flexDirection:'row',
+      alignItems:'center',
+  }, 
+  ttitle:{
+      color:'#419ED7',
+      fontSize:30
+  }, 
+  tinyLogo: {
+      width: 30,
+      height: 30
+    }
+})
+export default Navigation;
