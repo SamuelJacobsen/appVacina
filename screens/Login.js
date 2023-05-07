@@ -1,8 +1,8 @@
-import { StyleSheet, Text, TextInput, View, TouchableOpacity, Image, ImageBackground } from "react-native"
+import { Text, TextInput, View, TouchableOpacity, Image, ImageBackground } from "react-native"
 import { useState } from "react"
 import { estilos } from "./Login_sty"
 import LinearGradient from 'react-native-linear-gradient';
-import { useNavigation } from "@react-navigation/native";
+
 import validator from 'validator';
 
 

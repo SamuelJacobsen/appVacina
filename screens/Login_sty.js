@@ -1,11 +1,7 @@
-import { Text, StyleSheet, Image } from "react-native"
+import {StyleSheet} from "react-native"
 const estilos = StyleSheet.create({
   main: {
     height: '100%',
-
-
-
-
   },
   logo: {
     width: 40,
@@ -88,8 +84,6 @@ const estilos = StyleSheet.create({
 
   },
   Input: {
-
-
     width: 300,
     height: 38,
     fontSize: 14,

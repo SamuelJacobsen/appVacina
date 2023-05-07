@@ -1,4 +1,4 @@
-import { Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
+import { Text, StyleSheet, TouchableOpacity } from 'react-native'
 
 const CardProximaVacina = (props) => {
 
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     },
     nome: {
         paddingLeft: 20,
-        fontWeight: 'bold',
+        fontFamily: 'AveriaLibre-Bold',
         color: '#3e92c6',
         fontSize: 20
     },

@@ -82,39 +82,6 @@ const Home = (props) => {
 
     const onChangeSearch = query => setSearchQuery(query);
 
-    const styles = StyleSheet.create({
-        main: {
-            backgroundColor: '#add4d1',
-            flex: 1
-        },
-        title: {
-            textAlign: 'center',
-            fontSize: 40,
-            marginTop: 30,
-            color: '#429ed7',
-            fontWeight: 'bold',
-            textDecorationLine: 'underline'
-        },
-        btnNovaVacina: {
-            backgroundColor: 'green',
-            textAlign: 'center',
-            paddingVertical: 10,
-            width: 180,
-            color: 'white',
-            marginTop: 20,
-            marginBottom: 20,
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            fontSize: 20,
-        },
-        srcBar: {
-            width: '95%',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            marginTop: 20,
-            marginBottom: 20,
-        }
-    });
 
     return (
         <View style={styles.main}>
@@ -124,6 +91,8 @@ const Home = (props) => {
                 placeholder="Pesquisar Vacina..."
                 onChangeText={onChangeSearch}
                 value={searchQuery}
+                iconColor="#8B8B8B"
+                placeholderTextColor="#8B8B8B"
             />
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
@@ -138,5 +107,42 @@ const Home = (props) => {
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    main: {
+        backgroundColor: '#add4d1',
+        flex: 1
+    },
+    title: {
+        textAlign: 'center',
+        fontSize: 40,
+        marginTop: 30,
+        color: '#429ed7',
+        fontFamily: 'AveriaLibre-Bold',
+        textDecorationLine: 'underline'
+    },
+    btnNovaVacina: {
+        backgroundColor: '#37BD6D',
+        textAlign: 'center',
+        paddingVertical: 7,
+        width: 140,
+        color: 'white',
+        marginTop: 150,
+
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        fontSize: 16,
+        fontFamily: 'AveriaLibre-Bold',
+    },
+    srcBar: {
+        width: '90%',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        marginTop: 20,
+        marginBottom: 20,
+        borderRadius: 1,
+
+    }
+});
 
 export default Home

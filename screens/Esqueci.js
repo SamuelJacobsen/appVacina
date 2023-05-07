@@ -10,7 +10,7 @@ const Esqueci = (props) => {
     const navigation = useNavigation();
 
     const Recuperar = () => {
-      navigation.navigate('Inicial')
+        navigation.navigate('Inicial')
     };
 
     return (
@@ -30,7 +30,7 @@ const Esqueci = (props) => {
             </View>
 
             <View style={styles.click}>
-                <TouchableOpacity style={[styles.button, {backgroundColor: '#37BD6D'}]} onPress={Recuperar}>
+                <TouchableOpacity style={[styles.button, { backgroundColor: '#37BD6D' }]} onPress={Recuperar}>
                     <Text style={styles.buttonText}>Recuperar senha</Text>
                 </TouchableOpacity>
             </View>
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         textShadowRadius: 1,
         marginLeft: 'auto',
     },
-   
+
     click: {
         flex: 4,
         justifyContent: 'space-around',

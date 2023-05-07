@@ -18,7 +18,7 @@ const Editar = (props) => {
                 data: dataVacina,
                 dose: checked,
                 proxima: proxVacina,
-                comprovante: comprovante,
+                comprovante: null,
             }
         })
     }
@@ -40,135 +40,6 @@ const Editar = (props) => {
         setComprovante(props.route.params.item.comprovante)
     }, [props.route.params])
 
-    const styles = StyleSheet.create({
-        main: {
-            backgroundColor: '#add4d1',
-            flex: 1,
-            alignItems: "center",
-            paddingTop: 30
-        },
-        container: {
-            flexDirection: 'row',
-            marginBottom: 20,
-        },
-        containerRadio: {
-            width: 252,
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            flexWrap: "wrap"
-        },
-        containerRadios: {
-            flexDirection: 'row',
-            marginBottom: -10
-        },
-        label: {
-            margin: 5,
-            color: 'white',
-            fontSize: 15,
-            marginLeft: 'auto',
-        },
-        input: {
-            backgroundColor: 'white',
-            width: 250,
-            height: 30,
-            fontSize: 15,
-            color: '#499dcd',
-            paddingBottom: 5
-        },
-        btnSalvar: {
-            marginTop: 10,
-            backgroundColor: 'green',
-            textAlign: 'center',
-            paddingVertical: 10,
-            width: 150,
-            color: 'white',
-            fontSize: 15,
-        },
-        btnExcluir: {
-            marginTop: 30,
-            backgroundColor: '#fc7879',
-            textAlign: 'center',
-            paddingVertical: 5,
-            width: 100,
-            color: 'white',
-            fontSize: 15,
-            shadowColor: 'black',
-        },
-        sombra: {
-            shadowColor: "#000",
-            shadowOffset: {
-                width: 0,
-                height: 5,
-            },
-            shadowOpacity: 0.5,
-            shadowRadius: 7,
-            elevation: 15,
-        },
-        centeredView: {
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            marginTop: 22
-        },
-        modalView: {
-            margin: 20,
-            backgroundColor: "white",
-            padding: 15,
-            alignItems: "center",
-            shadowColor: "#000",
-            shadowOffset: {
-                width: 0,
-                height: 2
-            },
-            shadowOpacity: 0.25,
-            shadowRadius: 4,
-            elevation: 5
-        },
-        modalButtons: {
-            flexDirection: 'row',
-            justifyContent: 'space-around',
-        },
-        button: {
-            width: 120,
-            padding: 10,
-            elevation: 2,
-            margin: 10
-        },
-        buttonAceitar: {
-            backgroundColor: "#ff8383",
-        },
-        buttonCancelar: {
-            backgroundColor: "#3f92c6",
-        },
-        textStyle: {
-            color: "white",
-            fontWeight: "bold",
-            textAlign: "center"
-        },
-        modalText: {
-            fontSize: 20,
-            width: 250,
-            marginBottom: 10,
-            textAlign: "center",
-            color: '#ff8383'
-        },
-        brnComprovante: {
-            backgroundColor: '#419ed7',
-            textAlign: 'center',
-            paddingVertical: 10,
-            width: 150,
-            color: 'white',
-            fontSize: 15,
-        },
-        containerImagem: {
-            width: 249,
-            textAlign: 'center',
-            flexDirection: 'column',
-            color: 'white',
-            fontSize: 15,
-        },
-
-    });
 
     return (
 
@@ -226,6 +97,7 @@ const Editar = (props) => {
                             <RadioButton
                                 value="1a. dose"
                                 color="#419ed7"
+                                uncheckedColor="#fff"
                                 status={checked === '1a. dose' ? 'checked' : 'unchecked'}
                                 onPress={() => setChecked('1a. dose')}
                             />
@@ -235,15 +107,17 @@ const Editar = (props) => {
                             <RadioButton
                                 value="2a. dose"
                                 color="#419ed7"
+                                uncheckedColor="#fff"
                                 status={checked === '2a. dose' ? 'checked' : 'unchecked'}
                                 onPress={() => setChecked('2a. dose')}
                             />
-                            <Text style={{ width: 75,margin: 5, color: 'white', fontSize: 15, marginLeft: 'auto', }}>2a. dose</Text>
+                            <Text style={{ width: 75, margin: 5, color: 'white', fontSize: 15, marginLeft: 'auto', }}>2a. dose</Text>
                         </View>
                         <View style={styles.containerRadios}>
                             <RadioButton
                                 value="3a. dose"
                                 color="#419ed7"
+                                uncheckedColor="#fff"
                                 status={checked === '3a. dose' ? 'checked' : 'unchecked'}
                                 onPress={() => setChecked('3a. dose')}
                             />
@@ -253,6 +127,7 @@ const Editar = (props) => {
                             <RadioButton
                                 value="Dose única"
                                 color="#419ed7"
+                                uncheckedColor="#fff"
                                 status={checked === 'Dose única' ? 'checked' : 'unchecked'}
                                 onPress={() => setChecked('Dose única')}
                             />
@@ -267,16 +142,15 @@ const Editar = (props) => {
                     <View style={styles.containerImagem}>
                         <TouchableOpacity onPress={() => selecionarComprovante()}>
                             <Text style={[styles.brnComprovante, styles.sombra]}>
-                                Selecionar Imagem
+                                Selecionar Imagem...
                             </Text>
                         </TouchableOpacity>
                         {
-                            (comprovante != '')
-                                ?
-                                <Image source={{ uri: comprovante }} style={{ marginTop: 20, width: 200, height: 100 }} />
-                                :
-                                setComprovante('file:///data/user/0/com.myhealth/cache/rn_image_picker_lib_temp_91975286-39bb-4c9d-a700-7203ded35886.jpg') &&
-                                <Image source={{ uri: comprovante }} style={{ marginTop: 20, width: 200, height: 100 }} />
+
+
+                            <Image source={require('../assets/images/vac.jpg')} style={{ width: 170, height: 80, marginLeft: 'auto', marginRight: 105, margin: 5 }} />
+
+
                         }
 
                     </View>
@@ -301,14 +175,160 @@ const Editar = (props) => {
                 </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => setModalVisible(true)}>
-                <Text style={[styles.btnExcluir, styles.sombra]}>
-                    Excluir
-                </Text>
-            </TouchableOpacity>
-
+            <View >
+                    <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.button2}>
+                        <Image style={styles.lixeira} source={require('../assets/images/trash.png')}/>
+                        <Text style={styles.button2.text}>Excluir</Text>
+                    </TouchableOpacity>
+                </View>
         </View>
     );
 }
 
+const styles = StyleSheet.create({
+    main: {
+        backgroundColor: '#add4d1',
+        flex: 1,
+        alignItems: "center",
+        paddingTop: 30
+    },
+    container: {
+        flexDirection: 'row',
+        marginBottom: 20,
+    },
+    containerRadio: {
+        width: 252,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        flexWrap: "wrap"
+    },
+    containerRadios: {
+        flexDirection: 'row',
+        marginBottom: -10
+    },
+    label: {
+        margin: 5,
+        color: 'white',
+        fontSize: 15,
+        marginLeft: 'auto',
+    },
+    input: {
+        backgroundColor: 'white',
+        width: 250,
+        height: 30,
+        fontSize: 15,
+        color: '#499dcd',
+        paddingBottom: 5
+    },
+    btnSalvar: {
+        marginTop: 30,
+        backgroundColor: '#37BD6D',
+        fontFamily: 'AveriaLibre-Bold',
+        textAlign: 'center',
+        paddingVertical: 7,
+        width: 150,
+        color: 'white',
+        fontSize: 15,
+    },
+    sombra: {
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 7,
+        elevation: 15,
+    },
+    centeredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 22
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: "white",
+        padding: 15,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
+    },
+    modalButtons: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+    },
+    button: {
+        width: 120,
+        padding: 10,
+        elevation: 2,
+        margin: 10
+    },
+    buttonAceitar: {
+        backgroundColor: "#ff8383",
+    },
+    buttonCancelar: {
+        backgroundColor: "#3f92c6",
+    },
+    textStyle: {
+        color: "white",
+        fontFamily: 'AveriaLibre-Bold',
+        textAlign: "center"
+    },
+    modalText: {
+        fontSize: 20,
+        width: 250,
+        marginBottom: 10,
+        textAlign: "center",
+        color: '#ff8383'
+    },
+    brnComprovante: {
+        backgroundColor: '#419ed7',
+        textAlign: 'center',
+        fontFamily: 'AveriaLibre-Bold',
+        width: 130,
+        padding: 3,
+        color: 'white',
+        fontSize: 12,
+        marginTop: 10
+
+    },
+    containerImagem: {
+        width: 249,
+        textAlign: 'center',
+        flexDirection: 'column',
+        color: 'white',
+        fontSize: 15,
+    },
+    button2:{
+        text:{
+            color: 'white',
+            fontSize: 16,
+            marginRight: 5,
+            fontFamily: 'AveriaLibre-Bold',
+        },
+        flexDirection: 'row',
+        justifyContent: 'center',
+        backgroundColor: '#FD7979',
+        width: 100,
+        height: 32,
+        alignSelf: 'center',
+        padding: 5,
+        paddingHorizontal: 5,
+        elevation: 5,
+        marginTop: 150, 
+        
+    },
+    lixeira:{
+        width:15,
+        height:17,
+        marginRight:5,
+    },
+});
 export default Editar

@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import MaskInput, { Masks } from 'react-native-mask-input';
 import { RadioButton } from 'react-native-paper';
-import Navigation from './Navigation';
+
 
 const Criar = () => {
     const [nomeCompleto, setNomeCompleto] = useState('');
     const [sexo, setSexo] = useState('');
-    const [dataNascimento, setDataNascimento] = useState('');
+    const [dataVacina, setDataVacina] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [confirmarSenha, setConfirmarSenha] = useState('');
@@ -20,7 +21,7 @@ const Criar = () => {
             return;
         }
 
-        navigation.navigate('Inicial')
+        navigation.popToTop();
     };
 
     return (
@@ -51,7 +52,7 @@ const Criar = () => {
                                 style={styles.Radio}
                                 status={sexo === 'masculino' ? 'checked' : 'unchecked'}
                                 onPress={() => setSexo('masculino')}
-                                
+
                             />
                             <Text style={styles.textInput}>Masculino</Text>
                         </View>
@@ -70,12 +71,11 @@ const Criar = () => {
 
                 <View style={styles.formContainer}>
                     <Text style={styles.textInput}>Data nascimento </Text>
-                    <TextInput
+                    <MaskInput
                         style={styles.input}
-                        value={dataNascimento}
-                        onChangeText={setDataNascimento}
-                        placeholder={'Data de nascimento'}
-                        placeholderTextColor="#419ED7"
+                        value={dataVacina}
+                        onChangeText={setDataVacina}
+                        mask={Masks.DATE_DDMMYYYY}
                     />
                 </View>
 
@@ -114,10 +114,10 @@ const Criar = () => {
                     />
                 </View>
                 <View style={styles.errorContainer}>
-                {showIncorrectPassword && <Text style={styles.error}>Senha não confere!</Text>}
+                    {showIncorrectPassword && <Text style={styles.error}>Senha não confere!</Text>}
 
                 </View>
-               
+
 
             </View>
 
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginBottom: -20,
-        
+
     },
 
     click: {
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
     error: {
         color: "red",
         fontSize: 14,
-         marginTop: -25,
+        marginTop: -25,
         alignSelf: 'flex-start',
     },
     errorContainer: {
@@ -221,8 +221,8 @@ const styles = StyleSheet.create({
         width: '100%',
         marginBottom: 14,
         marginTop: 10,
-        
-      },
+
+    },
 
 });
 export default Criar;

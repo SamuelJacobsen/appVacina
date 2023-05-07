@@ -41,76 +41,7 @@ const Nova = (props) => {
     }
 
 
-    const styles = StyleSheet.create({
-        background: {
-            backgroundColor: '#add4d1',
-            flex: 1,
-            alignItems: "center",
-            paddingTop: 30
-        },
-        container: {
-            flexDirection: 'row',
-            marginBottom: 20,
-        },
-        containerRadio: {
-            width: 252,
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            flexWrap: "wrap"
-        },
-        containerRadios: {
-            flexDirection: 'row',
-            marginBottom: -10
-        },
-        label: {
-            margin: 5,
-            color: 'white',
-            fontSize: 15,
-            marginLeft: 'auto',
-        },
-        input: {
-            backgroundColor: 'white',
-            width: 250,
-            height: 30,
-            fontSize: 15,
-            color: '#499dcd',
-            paddingBottom: 5
-        },
-        btnCadastrar: {
-            marginTop: 50,
-            backgroundColor: 'green',
-            textAlign: 'center',
-            paddingVertical: 10,
-            width: 150,
-            color: 'white',
-            fontSize: 15,
-        },
-        btnComprovante: {
-            backgroundColor: '#419ed7',
-            textAlign: 'center',
-            paddingVertical: 10,
-            width: 150,
-            color: 'white',
-            fontSize: 15,
-        },
-        containerImagem: {
-            width: 249,
-            textAlign: 'center',
-            flexDirection: 'column',
-            color: 'white',
-            fontSize: 15,
-        },
-        sombra: {
-            shadowColor: "#000",
-            shadowOffset: {
-                width: 0,
-                height: 5,
-            },
-            shadowOpacity: 0.5,
-            shadowRadius: 7,
-            elevation: 15,
-        }
-    });
+
 
     return (
         <View style={styles.background}>
@@ -141,6 +72,7 @@ const Nova = (props) => {
                             <RadioButton
                                 value="1a. dose"
                                 color="#419ed7"
+                                uncheckedColor="#fff"
                                 status={checked === '1a. dose' ? 'checked' : 'unchecked'}
                                 onPress={() => setChecked('1a. dose')}
                             />
@@ -150,6 +82,7 @@ const Nova = (props) => {
                             <RadioButton
                                 value="2a. dose"
                                 color="#419ed7"
+                                uncheckedColor="#fff"
                                 status={checked === '2a. dose' ? 'checked' : 'unchecked'}
                                 onPress={() => setChecked('2a. dose')}
                             />
@@ -159,6 +92,7 @@ const Nova = (props) => {
                             <RadioButton
                                 value="3a. dose"
                                 color="#419ed7"
+                                uncheckedColor="#fff"
                                 status={checked === '3a. dose' ? 'checked' : 'unchecked'}
                                 onPress={() => setChecked('3a. dose')}
                             />
@@ -168,6 +102,7 @@ const Nova = (props) => {
                             <RadioButton
                                 value="Dose única"
                                 color="#419ed7"
+                                uncheckedColor="#fff"
                                 status={checked === 'Dose única' ? 'checked' : 'unchecked'}
                                 onPress={() => setChecked('Dose única')}
                             />
@@ -186,13 +121,8 @@ const Nova = (props) => {
                             </Text>
                         </TouchableOpacity>
                         {
-                            (comprovante != '')
-                                ?
-                                <Image source={{ uri: comprovante }} style={{ marginTop: 20, width: 200, height: 100 }} />
-                                :
-                                setComprovante('file:///data/user/0/com.myhealth/cache/rn_image_picker_lib_temp_91975286-39bb-4c9d-a700-7203ded35886.jpg') &&
-                                <Image source={{ uri: comprovante }} style={{ marginTop: 20, width: 200, height: 100 }} />
-                        }
+                                 <Image source={require('../assets/images/vac.jpg')} style={{width: 170, height: 80, marginLeft: 'auto', marginRight: 105, margin: 5}}/>
+                                }
 
                     </View>
 
@@ -219,4 +149,80 @@ const Nova = (props) => {
         </View>
     );
 }
+const styles = StyleSheet.create({
+    background: {
+        backgroundColor: '#add4d1',
+        flex: 1,
+        alignItems: "center",
+        paddingTop: 30
+    },
+    container: {
+        flexDirection: 'row',
+        marginBottom: 20,
+    },
+    containerRadio: {
+        width: 252,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        flexWrap: "wrap"
+    },
+    containerRadios: {
+        flexDirection: 'row',
+        marginBottom: -10
+    },
+    label: {
+        margin: 5,
+        color: 'white',
+        fontSize: 15,
+        marginLeft: 'auto',
+    },
+    input: {
+        backgroundColor: 'white',
+        width: 250,
+        height: 30,
+        fontSize: 15,
+        color: '#499dcd',
+        paddingBottom: 5
+    },
+    btnCadastrar: {
+        backgroundColor: '#37BD6D',
+        textAlign: 'center',
+        paddingVertical: 7,
+        width: 140,
+        color: 'white',
+        marginTop: 150,
+        
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        fontSize: 16,
+        fontFamily: 'AveriaLibre-Bold',
+    },
+    btnComprovante: {
+        backgroundColor: '#419ed7',
+        textAlign: 'center',
+        fontFamily: 'AveriaLibre-Bold',
+        width: 130,
+        padding: 3,
+        color: 'white',
+        fontSize: 12,
+        marginTop: 10
+    },
+    containerImagem: {
+        width: 249,
+        textAlign: 'center',
+        flexDirection: 'column',
+        color: 'white',
+        fontSize: 15,
+    },
+    sombra: {
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 7,
+        elevation: 15,
+    }
+});
 export default Nova

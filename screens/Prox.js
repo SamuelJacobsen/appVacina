@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Searchbar } from 'react-native-paper';
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import CardVacina from '../components/CardVacina';
 import CardProximaVacina from '../components/CardProximaVacina';
@@ -40,24 +39,7 @@ const Prox = (props) => {
         props.navigation.navigate('HomeNavigator', { screen: 'Nova Vacina' });
     }
 
-    const styles = StyleSheet.create({
-        main: {
-            backgroundColor: '#add4d1',
-            flex: 1
-        },
-        btnNovaVacina: {
-            backgroundColor: 'green',
-            textAlign: 'center',
-            paddingVertical: 10,
-            width: 180,
-            color: 'white',
-            marginTop: 300,
-            
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            fontSize: 20,
-        },
-    });
+
 
     return (
         <View style={styles.main}>
@@ -72,5 +54,23 @@ const Prox = (props) => {
         </View>
     );
 }
-
+const styles = StyleSheet.create({
+    main: {
+        backgroundColor: '#add4d1',
+        flex: 1
+    },
+    btnNovaVacina: {
+        backgroundColor: '#37BD6D',
+        textAlign: 'center',
+        paddingVertical: 7,
+        width: 140,
+        color: 'white',
+        marginTop: 300,
+        
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        fontSize: 16,
+        fontFamily: 'AveriaLibre-Bold',
+    },
+});
 export default Prox
