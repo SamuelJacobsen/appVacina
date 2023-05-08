@@ -2,12 +2,6 @@ import { DrawerContentScrollView, DrawerItem, DrawerItemList } from '@react-navi
 import { StyleSheet } from "react-native"
 import { UserHeader } from './UserHeader'
 import { TouchableOpacity,Image, Text, View } from 'react-native';
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#add4d1',
-    },
-
-})
 
 export const CustomDrawer = (props) => {
     
@@ -29,3 +23,9 @@ export const CustomDrawer = (props) => {
         </DrawerContentScrollView>
     )
 }
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: '#add4d1',
+    },
+
+})

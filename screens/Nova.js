@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { RadioButton } from 'react-native-paper';
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import MaskInput, { Masks } from 'react-native-mask-input';
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 import { launchImageLibrary } from 'react-native-image-picker'
+import { styles } from './Nova_sty';
 
 const Nova = (props) => {
 
@@ -34,17 +35,18 @@ const Nova = (props) => {
     function selecionarComprovante() {
         launchImageLibrary({ noData: true }, (response) => {
             if (response) {
-                setComprovante(response.assets[0].uri);
-                console.log(response.assets[0].uri)
+                if (response.didCancel !== true) {
+                    setComprovante(response.assets[0].uri);
+                    console.log(response.assets[0].uri)
+                }
             }
         });
     }
 
 
 
-
     return (
-        <View style={styles.background}>
+        <View style={styles.main}>
 
             <View>
 
@@ -121,7 +123,12 @@ const Nova = (props) => {
                             </Text>
                         </TouchableOpacity>
                         {
-                                 <Image source={require('../assets/images/vac.jpg')} style={{width: 170, height: 80, marginLeft: 'auto', marginRight: 105, margin: 5}}/>
+                            (comprovante != '')
+                            ?
+                            <Image source={{ uri: comprovante }} style={{ marginTop: 20, width: 200, height: 100 }} />
+                            :
+                            setComprovante('file:///data/user/0/com.appvacina/cache/rn_image_picker_lib_temp_157f366d-74e2-445b-8b98-0c0332b54afa.jpg') &&
+                            <Image source={{ uri: comprovante }} style={{ marginTop: 20, width: 200, height: 100 }} />
                                 }
 
                     </View>
@@ -149,80 +156,5 @@ const Nova = (props) => {
         </View>
     );
 }
-const styles = StyleSheet.create({
-    background: {
-        backgroundColor: '#add4d1',
-        flex: 1,
-        alignItems: "center",
-        paddingTop: 30
-    },
-    container: {
-        flexDirection: 'row',
-        marginBottom: 20,
-    },
-    containerRadio: {
-        width: 252,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        flexWrap: "wrap"
-    },
-    containerRadios: {
-        flexDirection: 'row',
-        marginBottom: -10
-    },
-    label: {
-        margin: 5,
-        color: 'white',
-        fontSize: 15,
-        marginLeft: 'auto',
-    },
-    input: {
-        backgroundColor: 'white',
-        width: 250,
-        height: 30,
-        fontSize: 15,
-        color: '#499dcd',
-        paddingBottom: 5
-    },
-    btnCadastrar: {
-        backgroundColor: '#37BD6D',
-        textAlign: 'center',
-        paddingVertical: 7,
-        width: 140,
-        color: 'white',
-        marginTop: 150,
-        
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        fontSize: 16,
-        fontFamily: 'AveriaLibre-Bold',
-    },
-    btnComprovante: {
-        backgroundColor: '#419ed7',
-        textAlign: 'center',
-        fontFamily: 'AveriaLibre-Bold',
-        width: 130,
-        padding: 3,
-        color: 'white',
-        fontSize: 12,
-        marginTop: 10
-    },
-    containerImagem: {
-        width: 249,
-        textAlign: 'center',
-        flexDirection: 'column',
-        color: 'white',
-        fontSize: 15,
-    },
-    sombra: {
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 5,
-        },
-        shadowOpacity: 0.5,
-        shadowRadius: 7,
-        elevation: 15,
-    }
-});
+
 export default Nova

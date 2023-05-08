@@ -2,15 +2,15 @@ import { Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
 
 const CardVacina = (props) => {
 
-    function showEditarVacina() {
+    function goToEditar() {
         props.navigation.navigate('Editar Vacina', {item: props.item})
     }
     return (
-        <TouchableOpacity style={styles.container} onPress={showEditarVacina}>
+        <TouchableOpacity style={styles.container} onPress={goToEditar}>
             <Text style={styles.nome}>{props.item.nome}</Text>
             <Text style={styles.dose}>{props.item.dose}</Text>
             <Text style={styles.dataDose}>{props.item.data}</Text>
-            <Image source={require('../assets/images/vac.jpg')} style={{width: 155, height: 70, marginLeft: 'auto', marginRight: 'auto'}}/>
+            <Image source={{ uri: props.item.comprovante }} style={{ width: 165, height: 60, marginLeft: 'auto', marginRight: 'auto' }} />
             {(props.item.proxima != '') ?
                 <Text style={styles.proxDose}>Próxima dose em: {props.item.proxima}</Text>
                 :

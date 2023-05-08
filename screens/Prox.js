@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import CardVacina from '../components/CardVacina';
+import React from 'react'
+import { FlatList,  Text, TouchableOpacity, View } from 'react-native'
+
 import CardProximaVacina from '../components/CardProximaVacina';
+import { styles } from './Prox_sty';
 
 const Prox = (props) => {
 
@@ -35,7 +36,7 @@ const Prox = (props) => {
     ]
 
 
-    const showNovaVacina = () => {
+    const goToNova = () => {
         props.navigation.navigate('HomeNavigator', { screen: 'Nova Vacina' });
     }
 
@@ -46,7 +47,7 @@ const Prox = (props) => {
             <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                 <FlatList data={listaVacinas} renderItem={({ item }) => <CardProximaVacina item={item} navigation={props.navigation} />} keyExtractor={item => item.id} numColumns={1} />
             </View>
-            <TouchableOpacity onPress={showNovaVacina}>
+            <TouchableOpacity onPress={goToNova}>
                 <Text style={[styles.btnNovaVacina, styles.shadow]}>
                     Nova Vacina
                 </Text>
@@ -54,23 +55,4 @@ const Prox = (props) => {
         </View>
     );
 }
-const styles = StyleSheet.create({
-    main: {
-        backgroundColor: '#add4d1',
-        flex: 1
-    },
-    btnNovaVacina: {
-        backgroundColor: '#37BD6D',
-        textAlign: 'center',
-        paddingVertical: 7,
-        width: 140,
-        color: 'white',
-        marginTop: 300,
-        
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        fontSize: 16,
-        fontFamily: 'AveriaLibre-Bold',
-    },
-});
 export default Prox

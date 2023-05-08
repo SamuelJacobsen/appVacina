@@ -2,13 +2,13 @@ import { Text, StyleSheet, TouchableOpacity } from 'react-native'
 
 const CardProximaVacina = (props) => {
 
-    function showEditarVacina() {
+    function goToEditar() {
         props.navigation.navigate('Editar Vacina', { item: props.item })
     }
 
     return (
         (props.item.proxima != '') ?
-            <TouchableOpacity style={styles.container} onPress={showEditarVacina}>
+            <TouchableOpacity style={styles.container} onPress={goToEditar}>
                 <Text style={styles.nome}>{props.item.nome}</Text>
                 <Text style={styles.proxDose}>{props.item.proxima}</Text>
             </TouchableOpacity>

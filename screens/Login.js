@@ -1,4 +1,4 @@
-import { Text, TextInput, View, TouchableOpacity, Image, ImageBackground } from "react-native"
+import {  Text, TextInput, View, TouchableOpacity, Image, ImageBackground } from "react-native"
 import { useState } from "react"
 import { estilos } from "./Login_sty"
 import LinearGradient from 'react-native-linear-gradient';
@@ -14,7 +14,7 @@ const Login = (props) => {
     const [senha, setSenha] = useState('')
     const [showInvalidMsg, setShowInvalidMsg] = useState(false);
 
-    const handleLogin = () => {
+    const goToHome = () => {
         if (!validator.isEmail(email) || senha.length < 8) {
           setShowInvalidMsg(true);
           props.navigation.navigate('HomeNavigator', { screen: 'Minhas Vacinas' });
@@ -105,7 +105,7 @@ const Login = (props) => {
 
 
                 <View style={estilos.click}>
-                    <TouchableOpacity onPress={handleLogin} style={estilos.button}>
+                    <TouchableOpacity onPress={goToHome} style={estilos.button}>
                         <Text style={estilos.button.text}>Entrar</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={goToCriar} style={estilos.buttonS}>

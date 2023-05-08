@@ -1,4 +1,4 @@
-import {StyleSheet} from "react-native"
+import { StyleSheet } from "react-native"
 const estilos = StyleSheet.create({
   main: {
     height: '100%',
@@ -16,22 +16,12 @@ const estilos = StyleSheet.create({
     height: '100%',
     width: '100%',
   },
-
-
-
-
   title: {
     text: {
-
-
       color: '#419ED7',
       fontSize: 40,
       fontFamily: 'AveriaLibre-Bold',
       textDecorationLine: 'underline',
-
-
-
-
     },
     flex: 2,
     flexDirection: 'row',
@@ -52,16 +42,6 @@ const estilos = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 10
   },
-
-
-
-
-
-
-
-
-
-
   textInput: {
     color: 'white',
     fontSize: 16,
@@ -79,9 +59,6 @@ const estilos = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     marginBottom: 14,
-
-
-
   },
   Input: {
     width: 300,
@@ -93,32 +70,17 @@ const estilos = StyleSheet.create({
     marginTop: 3,
     fontFamily: 'AveriaLibre-Bold',
     backgroundColor: 'white',
-
-
   },
-
-
-
-
-
   click: {
     flex: 4,
     justifyContent: 'space-around',
     alignItems: 'center',
-
-
-
-
   },
-
-
   button: {
     text: {
       color: 'white',
       fontSize: 16,
       fontFamily: 'AveriaLibre-Bold'
-
-
     },
     flexDirection: 'row',
     justifyContent: 'center',
@@ -131,11 +93,7 @@ const estilos = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-
-
   },
-
-
   buttonS: {
     text: {
       color: 'white',
@@ -153,15 +111,12 @@ const estilos = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-
   },
   buttonF: {
     text: {
       color: 'white',
       fontSize: 14,
       fontFamily: 'AveriaLibre-Bold'
-
-
     },
     flexDirection: 'row',
     justifyContent: 'center',
@@ -175,16 +130,6 @@ const estilos = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
-
-
-
-
-
-
-
-
-
-
 })
 
 

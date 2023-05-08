@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Searchbar } from 'react-native-paper';
-import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { FlatList, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import CardVacina from '../components/CardVacina';
+import { styles } from './Home_sty';
 
 const Home = (props) => {
 
@@ -13,7 +14,7 @@ const Home = (props) => {
             nome: 'BCG',
             data: '11/06/2022',
             dose: 'Dose única',
-            comprovante: '',
+            comprovante: 'file:///data/user/0/com.appvacina/cache/rn_image_picker_lib_temp_157f366d-74e2-445b-8b98-0c0332b54afa.jpg',
             proxima: ''
         },
         {
@@ -21,7 +22,7 @@ const Home = (props) => {
             nome: 'Febre Amarela',
             data: '05/10/2022',
             dose: '1a. dose',
-            comprovante: '',
+            comprovante: 'file:///data/user/0/com.appvacina/cache/rn_image_picker_lib_temp_157f366d-74e2-445b-8b98-0c0332b54afa.jpg',
             proxima: '11/10/2023'
         },
         {
@@ -29,7 +30,7 @@ const Home = (props) => {
             nome: 'Febre Amarela',
             data: '05/10/2022',
             dose: '1a. dose',
-            comprovante: '',
+            comprovante: 'file:///data/user/0/com.appvacina/cache/rn_image_picker_lib_temp_157f366d-74e2-445b-8b98-0c0332b54afa.jpg',
             proxima: '11/10/2023'
         },
         {
@@ -37,7 +38,7 @@ const Home = (props) => {
             nome: 'Febre Amarela',
             data: '05/10/2022',
             dose: '1a. dose',
-            comprovante: '',
+            comprovante: 'file:///data/user/0/com.appvacina/cache/rn_image_picker_lib_temp_157f366d-74e2-445b-8b98-0c0332b54afa.jpg',
             proxima: '11/10/2023'
         },
     ]
@@ -55,6 +56,7 @@ const Home = (props) => {
                 data: props.route.params.itemAdicionar.data,
                 dose: props.route.params.itemAdicionar.dose,
                 proxima: props.route.params.itemAdicionar.proxima,
+                comprovante: props.route.params.itemAdicionar.comprovante
             })
         }
         if (typeof props.route.params.itemEditar !== 'undefined') {
@@ -84,7 +86,7 @@ const Home = (props) => {
 
 
     return (
-        <View style={styles.main}>
+        <ScrollView horizontal={false} style={styles.main}>
             <Searchbar
                 icon={require('../assets/images/pes.png')}
                 style={styles.srcBar}
@@ -95,54 +97,17 @@ const Home = (props) => {
                 placeholderTextColor="#8B8B8B"
             />
 
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+            <ScrollView horizontal={true} contentContainerStyle={{ flexDirection: 'row', width: '100%' }}>
                 <FlatList data={vacinas} renderItem={({ item }) => <CardVacina item={item} navigation={props.navigation} />} keyExtractor={item => item.id} numColumns={2} />
-            </View>
+            </ScrollView>
 
             <TouchableOpacity onPress={showNovaVacina}>
                 <Text style={[styles.btnNovaVacina, styles.shadow]}>
                     Nova Vacina
                 </Text>
             </TouchableOpacity>
-        </View>
+        </ScrollView>
     );
 }
-
-const styles = StyleSheet.create({
-    main: {
-        backgroundColor: '#add4d1',
-        flex: 1
-    },
-    title: {
-        textAlign: 'center',
-        fontSize: 40,
-        marginTop: 30,
-        color: '#429ed7',
-        fontFamily: 'AveriaLibre-Bold',
-        textDecorationLine: 'underline'
-    },
-    btnNovaVacina: {
-        backgroundColor: '#37BD6D',
-        textAlign: 'center',
-        paddingVertical: 7,
-        width: 140,
-        color: 'white',
-        marginTop: 150,
-
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        fontSize: 16,
-        fontFamily: 'AveriaLibre-Bold',
-    },
-    srcBar: {
-        width: '90%',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        marginTop: 20,
-        marginBottom: 20,
-        borderRadius: 1,
-
-    }
-});
 
 export default Home

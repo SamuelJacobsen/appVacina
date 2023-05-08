@@ -1,5 +1,13 @@
 import { StyleSheet, Text, View } from "react-native"
 
+
+export const UserHeader = () => {
+    return (
+        <View style={styles.container}>
+            <Text style={styles.text}>Olá Jurandir</Text>
+        </View>
+    )
+}
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -20,11 +28,3 @@ const styles = StyleSheet.create({
         fontFamily: 'AveriaLibre-Bold',
     }
 })
-
-export const UserHeader = () => {
-    return (
-        <View style={styles.container}>
-            <Text style={styles.text}>Olá Jurandir</Text>
-        </View>
-    )
-}
