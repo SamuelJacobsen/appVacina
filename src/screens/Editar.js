@@ -1,37 +1,30 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { RadioButton } from 'react-native-paper';
-import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Modal, Text, TextInput, TouchableOpacity, View, Image } from 'react-native'
 import MaskInput, { Masks } from 'react-native-mask-input';
-import 'react-native-get-random-values';
-import { v4 as uuidv4 } from 'uuid';
-import { launchImageLibrary } from 'react-native-image-picker'
-import { styles } from './Nova_sty';
+import { launchImageLibrary } from 'react-native-image-picker';
+import { styles } from './Editar_sty';
+const Editar = (props) => {
 
-const Nova = (props) => {
+    function excluirVacina() {
+        setModalVisible(!modalVisible)
+        props.navigation.navigate('Minhas Vacinas', { idApagar: id })
+    }
 
-    function novaVacina() {
+    function editarVacina() {
         props.navigation.navigate('Minhas Vacinas', {
-            itemAdicionar: {
-                id: uuidv4(),
+            itemEditar: {
+                id: id,
                 nome: nome,
                 data: dataVacina,
                 dose: checked,
                 proxima: proxVacina,
-                comprovante: comprovante
+                comprovante: comprovante,
             }
         })
-        setDataVacina('')
-        setProxVacina('')
-        setNome('')
-        setChecked('')
     }
 
-    const [checked, setChecked] = useState('');
-    const [nome, setNome] = useState('');
-    const [dataVacina, setDataVacina] = useState('');
-    const [proxVacina, setProxVacina] = useState('');
-    const [comprovante, setComprovante] = useState('');
-
+    
     function selecionarComprovante() {
         launchImageLibrary({ noData: true }, (response) => {
             if (response) {
@@ -43,15 +36,59 @@ const Nova = (props) => {
         });
     }
 
+    const [modalVisible, setModalVisible] = useState(false);
+    const [checked, setChecked] = useState('');
+    const [dataVacina, setDataVacina] = useState('');
+    const [id, setId] = useState('');
+    const [proxVacina, setProxVacina] = useState('');
+    const [nome, setNome] = useState('');
+    const [comprovante, setComprovante] = useState('');
+
+    useEffect(() => {
+        setDataVacina(props.route.params.item.data)
+        setProxVacina((props.route.params.item.proxima) ? (props.route.params.item.proxima) : '')
+        setNome(props.route.params.item.nome)
+        setChecked(props.route.params.item.dose)
+        setId(props.route.params.item.id)
+        setComprovante(props.route.params.item.comprovante)
+    }, [props.route.params])
 
 
     return (
+
         <View style={styles.main}>
+
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                    Alert.alert("Modal has been closed.");
+                    setModalVisible(!modalVisible);
+                }}>
+                <View style={styles.centeredView}>
+                    <View style={styles.modalView}>
+                        <Text style={styles.modalText}>Tem certeza que deseja remover essa vacina?</Text>
+                        <View style={styles.modalButtons}>
+                            <TouchableOpacity
+                                style={[styles.button, styles.buttonAceitar]}
+                                onPress={() => excluirVacina(id)}>
+                                <Text style={styles.textStyle}>SIM</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={[styles.button, styles.buttonCancelar]}
+                                onPress={() => setModalVisible(!modalVisible)}>
+                                <Text style={styles.textStyle}>CANCELAR</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+            </Modal>
 
             <View>
 
                 <View style={styles.container}>
-                    <Text style={styles.label}>Próxima Vacinação</Text>
+                    <Text style={styles.label}>Data da Vacinação</Text>
                     <MaskInput
                         style={styles.input}
                         value={dataVacina}
@@ -63,8 +100,7 @@ const Nova = (props) => {
 
                 <View style={styles.container}>
                     <Text style={styles.label}>Vacina</Text>
-                    <TextInput style={styles.input} value={nome}
-                        onChangeText={setNome} />
+                    <TextInput style={styles.input} value={nome} onChangeText={setNome} />
                 </View>
 
                 <View style={styles.container}>
@@ -118,8 +154,8 @@ const Nova = (props) => {
 
                     <View style={styles.containerImagem}>
                         <TouchableOpacity onPress={() => selecionarComprovante()}>
-                            <Text style={[styles.btnComprovante, styles.sombra]}>
-                                Selecionar Imagem
+                            <Text style={[styles.brnComprovante, styles.sombra]}>
+                                Selecionar Imagem...
                             </Text>
                         </TouchableOpacity>
                         {
@@ -129,7 +165,7 @@ const Nova = (props) => {
                             :
                             setComprovante('file:///data/user/0/com.appvacina/cache/rn_image_picker_lib_temp_157f366d-74e2-445b-8b98-0c0332b54afa.jpg') &&
                             <Image source={{ uri: comprovante }} style={{ marginTop: 20, width: 200, height: 100 }} />
-                                }
+                        }
 
                     </View>
 
@@ -147,14 +183,20 @@ const Nova = (props) => {
 
             </View>
 
-            <TouchableOpacity onPress={novaVacina}>
-                <Text style={[styles.btnCadastrar, styles.sombra]}>
-                    Cadastrar
+            <TouchableOpacity onPress={() => editarVacina()}>
+                <Text style={[styles.btnSalvar, styles.sombra]}>
+                    Salvar Alterações
                 </Text>
             </TouchableOpacity>
 
+            <View >
+                    <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.button2}>
+                        <Image style={styles.lixeira} source={require('../../assets/images/trash.png')}/>
+                        <Text style={styles.button2.text}>Excluir</Text>
+                    </TouchableOpacity>
+                </View>
         </View>
     );
 }
 
-export default Nova
+export default Editar

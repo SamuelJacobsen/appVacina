@@ -1,7 +1,6 @@
 import React from 'react'
 import { FlatList,  Text, TouchableOpacity, View } from 'react-native'
-
-import CardProximaVacina from '../components/CardProximaVacina';
+import CardProximaVacina from '../../components/CardProximaVacina';
 import { styles } from './Prox_sty';
 
 const Prox = (props) => {

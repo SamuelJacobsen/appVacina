@@ -1,15 +1,27 @@
 import React, { useState } from 'react';
 import { Text, TextInput, View, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { styles } from './Esqueci_sty';
+import { sendPasswordResetEmail, getAuth  } from 'firebase/auth';
+import { app } from '../config/firebase';
+
+
 const Esqueci = (props) => {
 
     const [email, setEmail] = useState('');
 
-    const navigation = useNavigation();
+    
 
     const Recuperar = () => {
-        navigation.navigate('Inicial')
+        const auth = getAuth(app);
+        sendPasswordResetEmail(auth, email)
+        .then((user)=>{
+            console.log("Email de redefinição enviado com sucess. Verifique sua caixa de entrada"+ JSON.stringify(user))
+            props.navigation.pop();
+        })
+        .catch((error)=> {
+            console.log("Falha ao enviar email de redefinição: " + JSON.stringify(error))
+        })
+       
     };
 
     return (
@@ -29,7 +41,7 @@ const Esqueci = (props) => {
             </View>
 
             <View style={styles.click}>
-                <TouchableOpacity style={[styles.button, { backgroundColor: '#37BD6D' }]} onPress={Recuperar}>
+                <TouchableOpacity style={[styles.button, { backgroundColor: '#37BD6D' }]} onPress={()=>{Recuperar()}}>
                     <Text style={styles.buttonText}>Recuperar senha</Text>
                 </TouchableOpacity>
             </View>

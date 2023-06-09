@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Searchbar } from 'react-native-paper';
 import { FlatList, ScrollView, Text, TouchableOpacity, View } from 'react-native'
-import CardVacina from '../components/CardVacina';
+import CardVacina from '../../components/CardVacina';
 import { styles } from './Home_sty';
 
 const Home = (props) => {
@@ -88,7 +88,7 @@ const Home = (props) => {
     return (
         <ScrollView horizontal={false} style={styles.main}>
             <Searchbar
-                icon={require('../assets/images/pes.png')}
+                icon={require('../../assets/images/pes.png')}
                 style={styles.srcBar}
                 placeholder="Pesquisar Vacina..."
                 onChangeText={onChangeSearch}

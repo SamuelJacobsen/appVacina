@@ -1,17 +1,17 @@
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { createDrawerNavigator } from '@react-navigation/drawer'
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { StyleSheet, Text,  View } from 'react-native';
 import React from 'react';
-import Criar from './screens/Criar';
-import Home from './screens/Home';
-import Login from './screens/Login';
-import Esqueci from './screens/Esqueci';
+import Criar from './src/screens/Criar';
+import Home from './src/screens/Home';
+import Login from './src/screens/Login';
+import Esqueci from './src/screens/Esqueci';
 import { CustomDrawer } from './components/CustomDrawer';
-import Nova from './screens/Nova';
+import Nova from './src/screens/Nova';
 import { Image } from 'react-native';
-import Editar from './screens/Editar';
-import Prox from './screens/Prox';
+import Editar from './src/screens/Editar';
+import Prox from './src/screens/Prox';
 
 
 const EsqueciH = () => {

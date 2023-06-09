@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import {Text, TextInput, View, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { Text, TextInput, View, TouchableOpacity } from 'react-native';
 import MaskInput, { Masks } from 'react-native-mask-input';
 import { RadioButton } from 'react-native-paper';
 import { styles } from './Criar_sty';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { app } from '../config/firebase';
+
 
 const Criar = (props) => {
     const [nomeCompleto, setNomeCompleto] = useState('');
@@ -13,15 +15,41 @@ const Criar = (props) => {
     const [senha, setSenha] = useState('');
     const [confirmarSenha, setConfirmarSenha] = useState('');
     const [showIncorrectPassword, setShowIncorrectPassword] = useState(false);
-    const navigation = useNavigation();
+    const [isLoading, setLoading] = useState(false);
+    // const navigation = useNavigation();
 
     const cadastrar = () => {
+        setLoading(true)
+        const auth = getAuth(app);
         if (senha !== confirmarSenha) {
             setShowIncorrectPassword(true);
             return;
         }
+        else {
+            createUserWithEmailAndPassword(auth, email, senha)
 
-        props.navigation.pop();
+
+
+                .then((userCredential) => {
+                    console.log("Usuario criado com sucesso: " + JSON.stringify(userCredential))
+                    setLoading(false)
+                    props.navigation.pop();
+                })
+                .catch((error) => {
+                    setLoading(false)
+                    console.log("Erro ao criar usuario: " + JSON.stringify(error))
+
+
+                })
+        }
+
+
+        // if (senha !== confirmarSenha) {
+        //     setShowIncorrectPassword(true);
+        //     return;
+        // }
+
+        // props.navigation.pop();
     };
 
     return (
@@ -114,15 +142,16 @@ const Criar = (props) => {
                     />
                 </View>
                 <View style={styles.errorContainer}>
-                    {showIncorrectPassword && <Text style={styles.error}>Senha não confere!</Text>}
-
+                    {showIncorrectPassword || (senha === '' || confirmarSenha === '') ? (
+                        <Text style={styles.error}>Senha não confere ou está vazia</Text>
+                    ) : null}
                 </View>
 
 
             </View>
 
             <View style={styles.click}>
-                <TouchableOpacity style={styles.button} onPress={cadastrar}>
+                <TouchableOpacity style={styles.button} onPress={() => { cadastrar() }}>
                     <Text style={styles.buttonText}>Cadastrar</Text>
                 </TouchableOpacity>
             </View>
