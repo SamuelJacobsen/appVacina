@@ -6,7 +6,7 @@ import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 import { launchImageLibrary } from 'react-native-image-picker'
 import { styles } from './Nova_sty';
-import { db } from '../config/config/firebase.js';
+import { db } from '../firebase/config/firebase.js';
 import {addDoc, collection} from  "firebase/firestore"
 
 const Nova = (props) => {

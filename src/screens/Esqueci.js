@@ -15,7 +15,7 @@ const Esqueci = (props) => {
         const auth = getAuth(app);
         sendPasswordResetEmail(auth, email)
         .then((user)=>{
-            console.log("Email de redefinição enviado com sucess. Verifique sua caixa de entrada"+ JSON.stringify(user))
+            console.log("Email de redefinição enviado com sucesso. Verifique sua caixa de entrada"+ JSON.stringify(user))
             props.navigation.pop();
         })
         .catch((error)=> {

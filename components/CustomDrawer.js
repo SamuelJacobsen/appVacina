@@ -7,6 +7,7 @@ export const CustomDrawer = (props) => {
     
     const sair = () => {
         props.navigation.pop();
+        console.log("chegou")
     }
     return (
         <DrawerContentScrollView {...props} style={styles.container}>

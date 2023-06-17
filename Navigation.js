@@ -26,10 +26,12 @@ const EsqueciH = () => {
   );
 }
 const HomeNavigator = () => {
+
   const Drawer = createDrawerNavigator()
+  
   return (
     <Drawer.Navigator drawerContent={(props) => <CustomDrawer {...props} />}>
-
+      
 
       <Drawer.Screen
         name="Minhas Vacinas"
@@ -52,7 +54,6 @@ const HomeNavigator = () => {
         headerTitleStyle: { fontFamily: 'AveriaLibre-Bold', fontSize: 30, color: '#429ed5' },
       }} />
 
-
       <Drawer.Screen name="Nova Vacina" component={Nova} options={{
         title: "Minhas Vacinas",
         drawerItemStyle: { height: 0 },
@@ -68,15 +69,15 @@ const HomeNavigator = () => {
         headerTintColor: '#add4d1',
         headerTitleStyle: { fontFamily: 'AveriaLibre-Bold', fontSize: 30, color: '#429ed5' },
       }} />
-
+ 
     </Drawer.Navigator>
   )
 }
 
 const Navigation = () => {
-
+  console.log("chegou-1")
   const Stack = createNativeStackNavigator()
-
+  
   return (
     <NavigationContainer>
       <Stack.Navigator>

@@ -3,18 +3,29 @@ import { useState } from "react"
 import { estilos } from "./Login_sty"
 import LinearGradient from 'react-native-linear-gradient';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import  app  from "../config/firebase";
+import  {app, db}  from "../config/firebase";
 import { ActivityIndicator } from 'react-native-paper';
+import validator from 'validator';
 
 const Login = (props) => {
 
 
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
-    const [showInvalidMsg, setShowInvalidMsg] = useState('');
+    const [showInvalidMsg, setShowInvalidMsg] = useState(false);
     const [isLoading, setLoading] = useState(false)
 
-    const goToHome = (event) => {
+    const entrar = () => {
+        // const goToHome = () => {
+        //     if (!validator.isEmail(email) || senha.length < 8) {
+        //       setShowInvalidMsg(true);
+        //       props.navigation.navigate('HomeNavigator', { screen: 'Minhas Vacinas' });
+        //     } else {
+        //       // Lógica de autenticação do usuário
+        //       setShowInvalidMsg(false);
+    
+        //     }
+        //   };
         
         console.log(email);
         console.log(senha);
@@ -26,7 +37,7 @@ const Login = (props) => {
             .then((user) => {
                 console.log("Usuario autenticado com sucesso: " + JSON.stringify(user))
                 setShowInvalidMsg(false)
-                showHome()
+                goToHome()
             })
             .catch((error) => {
                 setShowInvalidMsg(false)
@@ -36,8 +47,8 @@ const Login = (props) => {
 
     };
 
-    const showHome = () => {
-        props.navigation.navigate('HomeNavigator', { screen: 'Minhas Vacinas' });
+    const goToHome = () => {
+        props.navigation.push('HomeNavigator');
     }
     const goToCriar = () => {
         props.navigation.push('Criar Conta')
@@ -120,13 +131,13 @@ const Login = (props) => {
 
 
                 <View style={estilos.click}>
-                    <TouchableOpacity onPress={() => { goToHome() }} style={estilos.button}>
+                    <TouchableOpacity onPress={()=>{entrar()}} style={estilos.button}>
                     {
                         isLoading ?
                             <ActivityIndicator size={'small'} color={'white'} />
                             :
                         <Text style={estilos.button.text}>Entrar</Text>
-                    }
+                    } 
                     </TouchableOpacity>
                     <TouchableOpacity onPress={goToCriar} style={estilos.buttonS}>
                         <Text style={estilos.buttonS.text}>Criar minha conta</Text>
