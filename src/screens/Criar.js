@@ -4,53 +4,39 @@ import MaskInput, { Masks } from 'react-native-mask-input';
 import { RadioButton } from 'react-native-paper';
 import { styles } from './Criar_sty';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { app } from '../config/firebase';
-
+import { app, db } from '../config/firebase';
+import { addDoc, collection, setDoc, doc } from 'firebase/firestore';
 
 const Criar = (props) => {
-    const [nomeCompleto, setNomeCompleto] = useState('');
+    const [nome, setNome] = useState('');
     const [sexo, setSexo] = useState('');
-    const [dataVacina, setDataVacina] = useState('');
+    const [dataNasc, setDataNasc] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [confirmarSenha, setConfirmarSenha] = useState('');
     const [showIncorrectPassword, setShowIncorrectPassword] = useState(false);
-    const [isLoading, setLoading] = useState(false);
-    // const navigation = useNavigation();
 
+
+    const salvarUsuario = (id) => {
+        setDoc(doc(db, "User", id), {
+            nome: nome,
+            email: email,
+            sexo: sexo,
+            dataNascimento: dataNasc
+        });
+    }
     const cadastrar = () => {
-        setLoading(true)
-        const auth = getAuth(app);
-        if (senha !== confirmarSenha) {
-            setShowIncorrectPassword(true);
-            return;
-        }
-        else {
-            createUserWithEmailAndPassword(auth, email, senha)
+          const auth = getAuth(app);
+        createUserWithEmailAndPassword(auth, email, senha)
+            .then((userRecord) => {
+                salvarUsuario(userRecord.user.uid)
+                props.navigation.pop()
+            })
+            .catch((error) => {
+                console.log("Ocorreu um erro ao cadastrar o usuário: " + error)
+            })
+        };
 
-
-
-                .then((userCredential) => {
-                    console.log("Usuario criado com sucesso: " + JSON.stringify(userCredential))
-                    setLoading(false)
-                    props.navigation.pop();
-                })
-                .catch((error) => {
-                    setLoading(false)
-                    console.log("Erro ao criar usuario: " + JSON.stringify(error))
-
-
-                })
-        }
-
-
-        // if (senha !== confirmarSenha) {
-        //     setShowIncorrectPassword(true);
-        //     return;
-        // }
-
-        // props.navigation.pop();
-    };
 
     return (
         <View style={styles.main}>
@@ -62,8 +48,8 @@ const Criar = (props) => {
                     <Text style={styles.textInput}>Nome Completo </Text>
                     <TextInput
                         style={styles.input}
-                        value={nomeCompleto}
-                        onChangeText={setNomeCompleto}
+                        value={nome}
+                        onChangeText={setNome}
                         placeholder={'Nome completo'}
                         placeholderTextColor="#419ED7"
                     />
@@ -101,8 +87,8 @@ const Criar = (props) => {
                     <Text style={styles.textInput}>Data nascimento </Text>
                     <MaskInput
                         style={styles.input}
-                        value={dataVacina}
-                        onChangeText={setDataVacina}
+                        value={dataNasc}
+                        onChangeText={setDataNasc}
                         mask={Masks.DATE_DDMMYYYY}
                     />
                 </View>

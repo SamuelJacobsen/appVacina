@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
         paddingVertical: 7,
         width: 140,
         color: 'white',
-        marginTop: 300,
+        marginTop: 30,
         
         marginLeft: 'auto',
         marginRight: 'auto',

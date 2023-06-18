@@ -1,11 +1,14 @@
 import { Text, TextInput, View, TouchableOpacity, Image, ImageBackground } from "react-native"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { estilos } from "./Login_sty"
 import LinearGradient from 'react-native-linear-gradient';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import  {app, db}  from "../config/firebase";
 import { ActivityIndicator } from 'react-native-paper';
 import validator from 'validator';
+import { useDispatch, useSelector } from 'react-redux';
+import { reducerSetUsuario } from "../redux/usuarioSlice";
+import { app, db } from "../config/firebase";
+import { collection, doc, documentId, getDoc, getDocs, onSnapshot, query, where } from 'firebase/firestore';
 
 const Login = (props) => {
 
@@ -13,20 +16,12 @@ const Login = (props) => {
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
     const [showInvalidMsg, setShowInvalidMsg] = useState(false);
-    const [isLoading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false)
+    const dispatch = useDispatch();
+
 
     const entrar = () => {
-        // const goToHome = () => {
-        //     if (!validator.isEmail(email) || senha.length < 8) {
-        //       setShowInvalidMsg(true);
-        //       props.navigation.navigate('HomeNavigator', { screen: 'Minhas Vacinas' });
-        //     } else {
-        //       // Lógica de autenticação do usuário
-        //       setShowInvalidMsg(false);
-    
-        //     }
-        //   };
-        
+
         console.log(email);
         console.log(senha);
 
@@ -34,15 +29,17 @@ const Login = (props) => {
 
         const auth = getAuth(app);
         signInWithEmailAndPassword(auth, email, senha)
-            .then((user) => {
-                console.log("Usuario autenticado com sucesso: " + JSON.stringify(user))
+            .then((res) => {
+                //buscarUsuario(res.user.uid)
+                dispatch(reducerSetUsuario({ id: res.user.uid }))
+                console.log("Usuario autenticado com sucesso: " + JSON.stringify(res))
                 setShowInvalidMsg(false)
                 goToHome()
             })
             .catch((error) => {
                 setShowInvalidMsg(false)
                 console.log("Falha ao autenticar o usuario: " + JSON.stringify(error))
-                
+
             })
 
     };
@@ -120,7 +117,7 @@ const Login = (props) => {
                         />
 
                     </View>
-                    {showInvalidMsg !== '' && <Text style={{ width: '80%', marginTop: -15, textAlign: 'center', color: '#ff0000' }}>E-mail e/ou senha inválidos</Text>}
+                    {showInvalidMsg && <Text style={{ width: '80%', marginTop: -15, textAlign: 'center', color: '#ff0000' }}>E-mail e/ou senha inválidos</Text>}
                 </View>
 
 
@@ -131,13 +128,13 @@ const Login = (props) => {
 
 
                 <View style={estilos.click}>
-                    <TouchableOpacity onPress={()=>{entrar()}} style={estilos.button}>
-                    {
-                        isLoading ?
-                            <ActivityIndicator size={'small'} color={'white'} />
-                            :
-                        <Text style={estilos.button.text}>Entrar</Text>
-                    } 
+                    <TouchableOpacity onPress={() => { entrar() }} style={estilos.button}>
+                        {
+                            loading ?
+                                <ActivityIndicator size={'small'} color={'white'} />
+                                :
+                                <Text style={estilos.button.text}>Entrar</Text>
+                        }
                     </TouchableOpacity>
                     <TouchableOpacity onPress={goToCriar} style={estilos.buttonS}>
                         <Text style={estilos.buttonS.text}>Criar minha conta</Text>

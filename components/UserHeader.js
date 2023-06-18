@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View } from "react-native"
-
+import { useSelector } from "react-redux"
 
 export const UserHeader = () => {
+    const nome = useSelector((state) => state.usuario.nome)
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>Olá Jurandir</Text>
+            <Text style={styles.text}>Olá, {nome}</Text>
         </View>
     )
 }

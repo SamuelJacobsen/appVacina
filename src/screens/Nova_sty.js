@@ -47,7 +47,16 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontFamily: 'AveriaLibre-Bold',
     },
-    btnComprovante: {
+    btnTirarFoto: {
+        backgroundColor: '#419ed7',
+        textAlign: 'center',
+        paddingVertical: 10,
+        width: 150,
+        color: 'white',
+        fontSize: 15,
+        marginBottom: 10
+    },
+    btnSelecionarFoto: {
         backgroundColor: '#419ed7',
         textAlign: 'center',
         fontFamily: 'AveriaLibre-Bold',
@@ -73,6 +82,51 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.5,
         shadowRadius: 7,
         elevation: 15,
+    },
+    centeredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 22
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: "white",
+        padding: 15,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
+    },
+    modalButtons: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+    },
+    button: {
+        width: 120,
+        padding: 10,
+        elevation: 2,
+        margin: 10
+    },
+    buttonAceitar: {
+        backgroundColor: "#3f92c6",
+    },
+    textStyle: {
+        color: "white",
+        fontWeight: "bold",
+        textAlign: "center"
+    },
+    modalText: {
+        fontSize: 20,
+        width: 250,
+        marginBottom: 10,
+        textAlign: "center",
+        color: '#ff8383'
     }
 });
 export { styles }

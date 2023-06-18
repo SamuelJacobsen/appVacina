@@ -104,7 +104,16 @@ const styles = StyleSheet.create({
         textAlign: "center",
         color: '#ff8383'
     },
-    brnComprovante: {
+    btnTirarFoto: {
+        backgroundColor: '#419ed7',
+        textAlign: 'center',
+        paddingVertical: 10,
+        width: 150,
+        color: 'white',
+        fontSize: 15,
+        marginBottom: 10
+    },
+    btnSelecionarFoto: {
         backgroundColor: '#419ed7',
         textAlign: 'center',
         fontFamily: 'AveriaLibre-Bold',

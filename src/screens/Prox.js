@@ -1,38 +1,34 @@
-import React from 'react'
-import { FlatList,  Text, TouchableOpacity, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { ScrollView, FlatList, Text, TouchableOpacity, View } from 'react-native'
 import CardProximaVacina from '../../components/CardProximaVacina';
 import { styles } from './Prox_sty';
+import { collection, onSnapshot, query, where } from 'firebase/firestore';
+import { db } from '../config/firebase';
+import { useSelector } from 'react-redux';
 
 const Prox = (props) => {
 
-    const listaVacinas = [
-        {
-            id: 1,
-            nome: 'BCG',
-            data: '11/06/2022',
-            dose: 'Dose única',
-            comprovante: '',
-            proxima: '20/09/2022'
-        },
-        {
-            id: 2,
-            nome: 'DTpa',
-            data: '05/10/2022',
-            dose: '1a. dose',
-            comprovante: '',
-            proxima: '20/09/2024'
-        },
-        {
-            id: 3,
-            nome: 'Sarampo',
-            data: '05/10/2022',
-            dose: '1a. dose',
-            comprovante: '',
-            proxima: '03/04/2026'
-        },
-        
-        
-    ]
+    const idUser = useSelector((state) => state.usuario.id)
+    const [vacinas, setVacinas] = useState([])
+
+    useEffect(() => {
+
+        const q = query(collection(db, "MyHealth"), where('proxVacina', '!=', ''));
+
+        onSnapshot(q, (result) => {
+            const colecaoVacinas = []
+            result.forEach((doc) => {
+                if (doc.data().idUsuario == idUser) {
+                    colecaoVacinas.push({
+                        ...doc.data(),
+                        id: doc.id
+                    })
+                }
+            });
+            setVacinas(colecaoVacinas)
+        });
+
+    }, []);
 
 
     const goToNova = () => {
@@ -42,16 +38,16 @@ const Prox = (props) => {
 
 
     return (
-        <View style={styles.main}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                <FlatList data={listaVacinas} renderItem={({ item }) => <CardProximaVacina item={item} navigation={props.navigation} />} keyExtractor={item => item.id} numColumns={1} />
-            </View>
+        <ScrollView horizontal={false} style={styles.main}>
+            <ScrollView horizontal={true} contentContainerStyle={{ flexDirection: 'row', width: '100%' }}>
+                <FlatList data={vacinas} renderItem={({ item }) => <CardProximaVacina item={item} navigation={props.navigation} />} keyExtractor={item => item.id} numColumns={1} />
+            </ScrollView>
             <TouchableOpacity onPress={goToNova}>
                 <Text style={[styles.btnNovaVacina, styles.shadow]}>
                     Nova Vacina
                 </Text>
             </TouchableOpacity>
-        </View>
+        </ScrollView>
     );
 }
 export default Prox

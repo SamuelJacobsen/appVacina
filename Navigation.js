@@ -12,7 +12,8 @@ import Nova from './src/screens/Nova';
 import { Image } from 'react-native';
 import Editar from './src/screens/Editar';
 import Prox from './src/screens/Prox';
-
+import { Provider } from 'react-redux';
+import { store } from './src/redux/store';
 
 const EsqueciH = () => {
   return (
@@ -75,10 +76,10 @@ const HomeNavigator = () => {
 }
 
 const Navigation = () => {
-  console.log("chegou-1")
   const Stack = createNativeStackNavigator()
   
   return (
+    <Provider store={store}>
     <NavigationContainer>
       <Stack.Navigator>
 
@@ -122,6 +123,7 @@ const Navigation = () => {
 
       </Stack.Navigator>
     </NavigationContainer>
+    </Provider>
   );
 
 };
@@ -139,5 +141,7 @@ const estilos = StyleSheet.create({
     width: 30,
     height: 30
   }
+  
 })
+
 export default Navigation;
